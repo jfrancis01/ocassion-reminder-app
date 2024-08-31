@@ -1,42 +1,36 @@
 <div class="container col-lg-6">
     <h1 *ngIf="editMode">Edit Occassion #{{id}}</h1>
     <h1 *ngIf="!editMode">Add Occasssion</h1>
-    <form (ngSubmit)="onSubmit(occassionform)" #occassionform="ngForm">
+    <form [formGroup]="occassionForm" (ngSubmit)="onSubmit()" #occassionform="ngForm">
         <div class="form-group">
             <label for="name">Name</label>
-            <input style="background-color: aliceblue;" type="text" class="form-control" id="name" [maxLength]="25"
-                required ngModel name="name" #name="ngModel" [ngModel]="editOccassion.name">
-                <span class="help-block" style="font-size: small;" *ngIf="!name.valid && name.touched" >Please enter the name of the person related to the occassion</span>
+            <input formControlName="name" style="background-color: aliceblue;" type="text" class="form-control" id="name" [maxLength]="25"
+                name="name">
+                <!--<span class="help-block" style="font-size: small;" *ngIf="!name.valid && name.touched" >Please enter the name of the person related to the occassion</span>-->
         </div>
         
         <div class="form-group">
             <label for="occassiondate">Ocassion Date</label>
-            <input required [ngModel]="editOccassion.occassionDate |date: 'yyyy-MM-dd'" style="background-color: aliceblue;"  type="date" class="form-control" id="occassiondate" ngModel name="occassiondate" required #occassiondate="ngModel" [ngModel]="editOccassion.occassionDate">
-            <span class="help-block" style="font-size: small;" *ngIf="!occassiondate.valid && occassiondate.touched">Please enter the date of the occassion</span>
+            <input formControlName="occassiondate" style="background-color: aliceblue;"  type="date" class="form-control" id="occassiondate" name="occassiondate">
+            <!--<span class="help-block" style="font-size: small;" *ngIf="!occassiondate.valid && occassiondate.touched">Please enter the date of the occassion</span>-->
         </div>
         
         <div class="form-group">
             <label for="occassiontype">Occassion Type</label>
-            <select [ngModel]="editOccassion.occassionType" style="background-color: aliceblue;"  class="form-control form-select"  id="occassiontype"
-                    required
-                    ngModel
-                    name="occassiontype" #occassiontype="ngModel">
+            <select formControlName="occassiontype" style="background-color: aliceblue;" name="occassiontype"  class="form-control form-select"  id="occassiontype">
             <option *ngFor="let occassiontype of occassiontypes" [value]="occassiontype">{{occassiontype}}</option>
             </select>
-            <span style="font-size: small;" class="help-block" *ngIf="!occassiontype.valid && occassiontype.touched">Please pick the occassion type</span>
+            <!--<span style="font-size: small;" class="help-block" *ngIf="!occassiontype.valid && occassiontype.touched">Please pick the occassion type</span>-->
         </div> 
         <div class="form-group">
             <label for="offset">Reminder Offset</label>
-            <select [selectedIndex]="reminderOffsetIndex" style="background-color: aliceblue;"  class="form-control form-select"  id="offset"
-                    required
-                    #offset="ngModel"
-                    ngModel name="offset">
+            <select formControlName="offset" style="background-color: aliceblue;" name="offset" class="form-control form-select"  id="offset">
             <option *ngFor="let offset of offsets" [value]="offset">{{offset}}</option>
             </select>
-            <span class="help-block" style="font-size: small;" *ngIf="!offset.valid && offset.touched" >Please pick the reminder offset</span>
+            <!--<span class="help-block" style="font-size: small;" *ngIf="!offset.valid && offset.touched" >Please pick the reminder offset</span>-->
         </div> 
         <div class="form-check">
-            <input [ngModel]="editOccassion.reminderOn" style="background-color: lightskyblue;"  #reminder="ngModel" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" ngModel name="reminder">
+            <input formControlName="reminder" style="background-color: lightskyblue;" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="reminder">
             <label class="form-check-label" for="flexCheckChecked">
              Remind me
             </label>
