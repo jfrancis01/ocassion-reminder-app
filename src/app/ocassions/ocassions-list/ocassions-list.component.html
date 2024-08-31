@@ -1,0 +1,34 @@
+<div id="table-container" class="container-fluid">
+    <h1>Your Occassions</h1>
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Ocassion</th>
+            <th scope="col">Date (dd/MM/YYY)</th>
+            <th scope="col">Reminder On</th>
+            <th scope="col">Reminder Setting</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let occassion of occassions; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{occassion.name}}</td>
+            <td>{{occassion.occassionType}}</td>
+            <td>{{occassion.occassionDate|  date: 'dd/MM/yyyy'}}</td>
+            <td>{{occassion.reminderOn}}</td>
+            <td>{{occassion.offsetReminder}}</td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                <a style="cursor: pointer;"><img title="Edit" class="img-responsive" height="30px" width="30px" src="assets/edit.png" (click)="onEdit(occassion)"/></a>
+              </div>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <a style="cursor: pointer;"><img title="Delete" class="img-responsive" height="30px" width="30px" src="assets/delete.png" (click)="onDelete(occassion.occassionID)"/></a>
+              </div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

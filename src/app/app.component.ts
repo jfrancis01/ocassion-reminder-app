@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ocassion-reminder-app';
+  loadedFeature='occassion-list';
+
+  onNavigate(feature: string){
+    console.log(feature)
+    this.loadedFeature = feature;
+  }
 }

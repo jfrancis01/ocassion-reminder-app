@@ -1,0 +1,19 @@
+<div class="container col-lg-6">
+    <h1>Sign Up Form</h1>
+    <form (ngSubmit)="onSubmit(signupform)" #signupform="ngForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input style="background-color: aliceblue;" type="text" class="form-control" id="name" [maxLength]="25"
+                required ngModel name="name" #name="ngModel">
+                <span class="help-block" style="font-size: small;" *ngIf="!name.valid && name.touched" >Please enter the name of the person related to the occassion</span>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input style="background-color: aliceblue;"  type="email" class="form-control" id="email" ngModel name="email" required #email="ngModel">
+            <span class="help-block" style="font-size: small;" *ngIf="!email.valid && email.touched">Please enter the date of the occassion</span>
+        </div>
+          <button class="btn btn-primary" type="submit" [disabled]="!signupform.valid">Submit</button>
+          <button class="btn btn-secondary" type="submit">Cancel</button>
+    </form>
+</div>

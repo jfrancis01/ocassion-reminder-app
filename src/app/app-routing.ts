@@ -1,0 +1,20 @@
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { OcassionsListComponent } from "./ocassions/ocassions-list/ocassions-list.component";
+import { OcassionsEditComponent } from "./ocassions/ocassions-edit/ocassions-edit.component";
+import { RegisterComponent } from "./register/register.component";
+
+const appRoutes: Routes =[
+    {path:'', redirectTo: '/occassions', pathMatch: 'full'},
+    {path:'occassions', component: OcassionsListComponent},
+    {path:'add', component:OcassionsEditComponent},
+    {path:'edit', component:OcassionsEditComponent},
+    {path:'register', component: RegisterComponent}
+];
+@NgModule({
+    imports:[RouterModule.forRoot(appRoutes)],
+    exports:[RouterModule]
+})
+export class AppRoutingModule{
+
+}
