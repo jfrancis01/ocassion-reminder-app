@@ -13,7 +13,7 @@ import { DATE_PIPE_DEFAULT_OPTIONS, DatePipe } from '@angular/common';
 })
 export class OcassionsEditComponent {
 
-  occassiontypes = ['BirthDay', 'Anniversary', 'Graduation', 'Confirmation', 'Wedding'];
+  occassiontypes = ['Birthday', 'Anniversary', 'Graduation', 'Confirmation', 'Wedding'];
   offsets = ['week before', 'day before', 'day off'];
   occassionMap = new Map<string, number>([
     ["Birthday", 0],
