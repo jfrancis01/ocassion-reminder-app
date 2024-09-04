@@ -86,7 +86,10 @@ export class OcassionsEditComponent {
       this.editOccassion.reminderOn = form.value.reminder;
       this.occasionService.editOccassion
     }
-    this.occasionService.addOccassion(new Ocassion(length + 1, form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
+    else{
+      this.occasionService.addOccassion(new Ocassion(length + 1, form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
+    }
+
     this.router.navigate(['occassions']);
   }
   onCancel(){
