@@ -9,7 +9,7 @@ import { DATE_PIPE_DEFAULT_OPTIONS, DatePipe } from '@angular/common';
   selector: 'app-ocassions-edit',
   templateUrl: './ocassions-edit.component.html',
   styleUrl: './ocassions-edit.component.css',
-  providers:[OccassionsService, DatePipe]
+  providers:[DatePipe]
 })
 export class OcassionsEditComponent {
 
@@ -74,16 +74,20 @@ export class OcassionsEditComponent {
     });
   }
 
-  onSubmit(){
-    console.log(this.occassionForm);
-    // let id:number = -1;
-    // let name:string = form.value.name;
-    // let occassionDate:Date  = form.value.occassiondate;
-    // let occassiontype:string= form.value.occassiontype;
-    // let offset:string = form.value.offset;
-    // let reminder:boolean = form.value.reminder;
-    // let occassion:Ocassion = new Ocassion(id, name, occassiontype, occassionDate, reminder, offset);
-    // this.occasionService.addOccassion(occassion);
+  onSubmit(form: NgForm){
+    length = this.occasionService.getSize();
+    console.log(form);
+    console.log(form.value.name);
+    if(this.editMode){
+      this.editOccassion.name = form.value.name;
+      this.editOccassion.occassionDate = form.value.occassiondate;
+      this.editOccassion.occassionType = form.value.occassiontype;
+      this.editOccassion.offsetReminder = form.value.offset;
+      this.editOccassion.reminderOn = form.value.reminder;
+      this.occasionService.editOccassion
+    }
+    this.occasionService.addOccassion(new Ocassion(length + 1, form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
+    this.router.navigate(['occassions']);
   }
   onCancel(){
     this.router.navigate(['occassions']);

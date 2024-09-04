@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Ocassion } from '../ocassion.model';
 import { OccassionsService } from '../occassions.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ocassions-list',
   templateUrl: './ocassions-list.component.html',
   styleUrl: './ocassions-list.component.css',
-  providers:[OccassionsService]
+  providers:[]
 })
-export class OcassionsListComponent implements OnInit{
-  occassions: Ocassion[] =[];
+export class OcassionsListComponent implements OnInit, OnDestroy{
+  occassions: Ocassion[];
   id:Number;
+  private occassionChangedSub : Subscription;
 
   constructor(private occasionsService: OccassionsService, private router: Router){
 
@@ -32,6 +34,14 @@ export class OcassionsListComponent implements OnInit{
 
   ngOnInit(): void {
       this.occassions = this.occasionsService.getOccassions();
+      this.occassionChangedSub = this.occasionsService.occassionsChanged.subscribe(
+        (occassions: Ocassion[]) => {
+          this.occassions = occassions;
+        }
+      );
   }
 
+  ngOnDestroy(): void {
+      this.occassionChangedSub.unsubscribe();
+  }
 }

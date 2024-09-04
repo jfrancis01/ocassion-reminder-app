@@ -9,6 +9,7 @@ import { OcassionsEditComponent } from './ocassions/ocassions-edit/ocassions-edi
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from './app-routing';
 import { DropdownDirective } from './directives/dropdown.directive';
+import { OccassionsService } from './ocassions/occassions.service';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { DropdownDirective } from './directives/dropdown.directive';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [OccassionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
