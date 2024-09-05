@@ -5,28 +5,36 @@
         <h4 class="card-title mt-2">Sign up</h4>
     </header>
     <article class="card-body">
-    <form>
+    <form (ngSubmit)="onSubmit(signupform)" #signupform="ngForm">
         <div class="form-row">
             <div class="col form-group">
                 <label>First name </label>   
-                  <input type="text" class="form-control" placeholder="">
+                  <input required name="firstname" [(ngModel)]="userData.firstname" type="text" class="form-control" #firstname="ngModel">
+                  <span class="help-block" style="font-size: small;" *ngIf="!firstname.valid && firstname.touched">Please enter your first name</span>
             </div> <!-- form-group end.// -->
             <div class="col form-group">
                 <label>Last name</label>
-                  <input type="text" class="form-control" placeholder=" ">
+                  <input required name="lastname" [(ngModel)]="userData.lastname"  type="text" class="form-control" #lastname="ngModel">
+                  <span class="help-block" style="font-size: small;" *ngIf="!lastname.valid && lastname.touched">Please enter your last name</span>
             </div> <!-- form-group end.// -->
         </div> <!-- form-row end.// -->
         <div class="form-group">
             <label>Email address</label>
-            <input type="email" class="form-control" placeholder="">
-            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <input required name="email" type="email" class="form-control" [(ngModel)]="userData.email" #email="ngModel">
+            <div *ngIf="(email.invalid && email.touched) || email.dirty">
+                <small *ngIf="email.errors?.required" class="text-danger">Primary email is required</small>
+                <!--question mark(?) is a safe navigation operator-->
+                <small *ngIf="email.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+              </div>
+            <div><small class="form-text text-muted">We'll never share your email with anyone else.</small></div>
         </div> <!-- form-group end.// -->
         <div class="form-group">
             <label>Create password</label>
-            <input class="form-control" type="password">
+            <input required name="password" [(ngModel)]="userData.password" class="form-control" type="password" #password="ngModel">
+            <span class="help-block" style="font-size: small;" *ngIf="!password.valid && password.touched">Please enter a password</span>
         </div> <!-- form-group end.// -->  
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+            <button type="submit" [disabled]="!signupform.valid" class="btn btn-primary btn-block"> Register  </button>
         </div> <!-- form-group// -->                                             
     </form>
     </article> <!-- card-body end .// -->
