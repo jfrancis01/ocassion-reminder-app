@@ -4,26 +4,26 @@
     <form [formGroup]="occassionForm" (ngSubmit)="onSubmit(occassionform)" #occassionform="ngForm">
         <div class="form-group">
             <label for="name">Name</label>
-            <input required ngmodel formControlName="name" style="background-color: aliceblue;" type="text" class="form-control" id="name" [maxLength]="25" name="name" #name>
+            <input required ngModel formControlName="name" style="background-color: aliceblue;" type="text" class="form-control" id="name" [maxLength]="25" name="name" #name>
             <span class="help-block" style="font-size: small;" *ngIf="!name.valid && name.touched" >Please enter the name of the person related to the occassion</span>
         </div>
         
         <div class="form-group">
             <label for="occassiondate">Ocassion Date</label>
-            <input required ngmodel formControlName="occassiondate" style="background-color: aliceblue;"  type="date" class="form-control" id="occassiondate" name="occassiondate" #occassiondate>
+            <input required ngModel formControlName="occassiondate" style="background-color: aliceblue;"  type="date" class="form-control" id="occassiondate" name="occassiondate" #occassiondate>
             <span class="help-block" style="font-size: small;" *ngIf="!occassiondate.valid && occassiondate.touched">Please enter the date of the occassion</span>
         </div>
         
         <div class="form-group">
             <label for="occassiontype">Occassion Type</label>
-            <select required ngmodel formControlName="occassiontype" style="background-color: aliceblue;" name="occassiontype"  class="form-control form-select"  id="occassiontype" #occassiontype>
+            <select required ngModel formControlName="occassiontype" style="background-color: aliceblue;" name="occassiontype"  class="form-control form-select"  id="occassiontype" #occassiontype>
             <option *ngFor="let occassiontype of occassiontypes" [value]="occassiontype">{{occassiontype}}</option>
             </select>
             <span style="font-size: small;" class="help-block" *ngIf="!occassiontype.valid && occassiontype.touched">Please pick the occassion type</span>
         </div> 
         <div class="form-group">
             <label for="offset">Reminder Offset</label>
-            <select required ngmodel formControlName="offset" style="background-color: aliceblue;" name="offset" class="form-control form-select"  id="offset" #offset>
+            <select required ngModel formControlName="offset" style="background-color: aliceblue;" name="offset" class="form-control form-select"  id="offset" #offset>
             <option *ngFor="let offset of offsets" [value]="offset">{{offset}}</option>
             </select>
             <span class="help-block" style="font-size: small;" *ngIf="!offset.valid && offset.touched" >Please pick the reminder offset</span>

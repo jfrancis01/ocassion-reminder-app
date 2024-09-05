@@ -3,9 +3,11 @@ import { Routes, RouterModule } from "@angular/router";
 import { OcassionsListComponent } from "./ocassions/ocassions-list/ocassions-list.component";
 import { OcassionsEditComponent } from "./ocassions/ocassions-edit/ocassions-edit.component";
 import { RegisterComponent } from "./register/register.component";
+import { LoginComponent } from "./login/login.component";
 
 const appRoutes: Routes =[
-    {path:'', redirectTo: '/occassions', pathMatch: 'full'},
+    {path:'', redirectTo: '/login', pathMatch: 'full'},
+    {path:'login', component: LoginComponent},
     {path:'occassions', component: OcassionsListComponent},
     {path:'add', component:OcassionsEditComponent},
     {path:'edit', component:OcassionsEditComponent},
