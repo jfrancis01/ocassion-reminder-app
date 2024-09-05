@@ -9,6 +9,14 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
+
+  userData = {
+    "firstname":"",
+    "lastname": "",
+    "email": "",
+    "password":"" 
+  }
+
   constructor(private router:Router){
 
   }
