@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { OccassionsService } from '../occassions.service';
 import { Ocassion } from '../ocassion.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
@@ -66,10 +66,10 @@ export class OcassionsEditComponent {
       reminder = this.editOccassion.reminderOn;
     } 
     this.occassionForm = new FormGroup({
-      'name': new FormControl(name),
-      'occassiondate': new FormControl(this.datepipe.transform(occassionDate, 'yyyy-MM-dd')),
-      'occassiontype': new FormControl(occassionType),
-      'offset': new FormControl(offset),
+      'name': new FormControl(name, Validators.required),
+      'occassiondate': new FormControl(this.datepipe.transform(occassionDate, 'yyyy-MM-dd'), Validators.required),
+      'occassiontype': new FormControl(occassionType, Validators.required),
+      'offset': new FormControl(offset, Validators.required),
       'reminder': new FormControl(reminder)
     });
   }
