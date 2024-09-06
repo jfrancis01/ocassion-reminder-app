@@ -6,7 +6,6 @@ export class Ocassion{
     public reminderOn: Boolean = false;
     public offsetReminder: string
 
-
     constructor(occassionID:Number, name:string, occassionType: string, occassionDate: Date, reminderOn:boolean, offsetReminder: string){
         this.occassionID = occassionID;
         this.name = name;

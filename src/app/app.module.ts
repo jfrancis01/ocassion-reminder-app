@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { OcassionsListComponent } from './ocassions/ocassions-list/ocassions-list.component';
 import { OcassionsEditComponent } from './ocassions/ocassions-edit/ocassions-edit.component';
@@ -10,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from './app-routing';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { OccassionsService } from './ocassions/occassions.service';
+import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,8 +26,8 @@ import { OccassionsService } from './ocassions/occassions.service';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [OccassionsService],
   bootstrap: [AppComponent]
