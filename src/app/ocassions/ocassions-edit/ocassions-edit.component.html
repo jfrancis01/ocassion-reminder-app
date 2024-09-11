@@ -5,13 +5,13 @@
         <div class="form-group">
             <label for="name">Name</label>
             <input required formControlName="name" style="background-color: aliceblue;" type="text" class="form-control" id="name" [maxLength]="25" name="name" #name>
-            <span class="help-block" style="font-size: small;" *ngIf="occassionForm.controls['name'].invalid ||occassionForm.controls['name'].touched">Please enter the name of the person related to the occassion</span>
+            <span class="help-block" style="font-size: small;" *ngIf="occassionForm.controls['name'].invalid && occassionForm.controls['name'].touched">Please enter the name of the person related to the occassion</span>
         </div>
         
         <div class="form-group">
             <label for="occassiondate">Ocassion Date</label>
             <input required formControlName="occassiondate" style="background-color: aliceblue;"  type="date" class="form-control" id="occassiondate" name="occassiondate" #occassiondate>
-            <span class="help-block" style="font-size: small;" *ngIf="occassionForm.controls['occassiondate'].invalid ||occassionForm.controls['occassiondate'].touched">Please enter the date of the occassion</span>
+            <span class="help-block" style="font-size: small;" *ngIf="occassionForm.controls['occassiondate'].invalid && occassionForm.controls['occassiondate'].touched">Please enter the date of the occassion</span>
         </div>
         
         <div class="form-group">
@@ -19,14 +19,14 @@
             <select required formControlName="occassiontype" style="background-color: aliceblue;" name="occassiontype"  class="form-control form-select"  id="occassiontype" #occassiontype>
             <option *ngFor="let occassiontype of occassiontypes" [value]="occassiontype">{{occassiontype}}</option>
             </select>
-            <span style="font-size: small;" class="help-block" *ngIf="occassionForm.controls['occassiontype'].invalid ||occassionForm.controls['occassiontype'].touched ">Please pick the occassion type</span>
+            <span style="font-size: small;" class="help-block" *ngIf="occassionForm.controls['occassiontype'].invalid && occassionForm.controls['occassiontype'].touched ">Please pick the occassion type</span>
         </div> 
         <div class="form-group">
             <label for="offset">Reminder Offset</label>
             <select required formControlName="offset" style="background-color: aliceblue;" name="offset" class="form-control form-select"  id="offset" #offset>
             <option *ngFor="let offset of offsets" [value]="offset">{{offset}}</option>
             </select>
-            <span class="help-block" style="font-size: small;" *ngIf="occassionForm.controls['offset'].invalid ||occassionForm.controls['offset'].touched" >Please pick the reminder offset</span>
+            <span class="help-block" style="font-size: small;" *ngIf="occassionForm.controls['offset'].invalid && occassionForm.controls['offset'].touched" >Please pick the reminder offset</span>
         </div> 
         <div class="form-check">
             <input formControlName="reminder" style="background-color: lightskyblue;" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="reminder" #reminder>
