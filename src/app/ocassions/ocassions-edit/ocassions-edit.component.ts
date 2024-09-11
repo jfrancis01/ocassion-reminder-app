@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { OccassionsService } from '../occassions.service';
-import { Ocassion } from '../ocassion.model';
+import { Occassion } from '../ocassion.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { DATE_PIPE_DEFAULT_OPTIONS, DatePipe } from '@angular/common';
 
@@ -29,7 +29,7 @@ export class OcassionsEditComponent {
   ]);
   id: Number;
   editMode = false;
-  editOccassion: Ocassion;
+  editOccassion: Occassion;
   occassionForm: FormGroup;
   occasionTypeIndex = -1;
   reminderOffsetIndex = -1;
@@ -87,9 +87,9 @@ export class OcassionsEditComponent {
       this.occasionService.editOccassion
     }
     else{
-      this.occasionService.addOccassion(new Ocassion(length + 1, form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
+      this.occasionService.addOccassion(new Occassion(length + 1, form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
     }
-
+    form.reset();
     this.router.navigate(['occassions']);
   }
   onCancel(){

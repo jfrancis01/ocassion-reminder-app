@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Ocassion } from '../ocassion.model';
+import { Occassion } from '../ocassion.model';
 import { OccassionsService } from '../occassions.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   providers:[]
 })
 export class OcassionsListComponent implements OnInit, OnDestroy{
-  occassions: Ocassion[];
+  occassions: Occassion[];
   id:Number;
   private occassionChangedSub : Subscription;
 
@@ -26,7 +26,7 @@ export class OcassionsListComponent implements OnInit, OnDestroy{
     }
   }
 
-  onEdit(occassion: Ocassion){
+  onEdit(occassion: Occassion){
     this.id = occassion.occassionID; 
     console.log("Trying to route..editing...." + this.id);
     this.router.navigate(['edit'], {queryParams:{id:this.id}})
@@ -35,7 +35,7 @@ export class OcassionsListComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
       this.occassions = this.occasionsService.getOccassions();
       this.occassionChangedSub = this.occasionsService.occassionsChanged.subscribe(
-        (occassions: Ocassion[]) => {
+        (occassions: Occassion[]) => {
           this.occassions = occassions;
         }
       );
