@@ -25,10 +25,15 @@ export class OccassionsService{
             params:{"userID": "59c02271-c03e-4c99-92c1-a50fa1131b2e"}
           }
         this.http.get<Occassion[]>('http://localhost:8009/occassionsreminder/occassions',httpOptions)
-        .subscribe((occassions)=> console.log(occassions));
-        this.occassionsChanged.next(this.occassions);
-        return this.occassions;
+        .subscribe((occassions)=> this.setOccassions(occassions));
+        return this.occassions.slice();
     }
+
+    setOccassions(occassions: Occassion[]){
+        this.occassions = occassions;
+        this.occassionsChanged.next(this.occassions.slice());
+    }
+
     getOccassion(index: Number){
         return this.occassions[index.valueOf()];
     }
