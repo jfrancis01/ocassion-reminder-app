@@ -21,11 +21,12 @@ export class OccassionsService{
 
     getOccassions(){
         const httpOptions = {
-            headers: {'Access-Control-Allow-Origin': 'http://localhost:4200'},
+            headers: {'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'},
             params:{"userID": "59c02271-c03e-4c99-92c1-a50fa1131b2e"}
           }
         this.http.get<Occassion[]>('http://localhost:8009/occassionsreminder/occassions',httpOptions)
-        .subscribe((occassions)=> this.occassions = occassions);
+        .subscribe((occassions)=> console.log(occassions));
+        this.occassionsChanged.next(this.occassions);
         return this.occassions;
     }
     getOccassion(index: Number){
