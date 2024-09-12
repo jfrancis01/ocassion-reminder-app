@@ -27,7 +27,7 @@ export class OcassionsEditComponent {
     ["day before", 1],
     ["day off", 2]
   ]);
-  id: number;
+  id: number = -1;
   editMode = false;
   editOccassion: Occassion;
   occassionForm: FormGroup;
@@ -40,7 +40,7 @@ export class OcassionsEditComponent {
 
   ngOnInit(){
     this.id = Number(this.route.snapshot.queryParamMap.get('id'));
-    this.editMode = this.id !== -1;
+    this.editMode = this.id !== 0;
     console.log("Received: " + this.id + " , editMode: " + this.editMode);
     this.populateForm(this.id);
 
