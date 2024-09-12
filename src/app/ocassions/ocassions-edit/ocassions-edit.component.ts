@@ -78,18 +78,22 @@ export class OcassionsEditComponent {
     length = this.occasionService.getSize();
     console.log(form);
     console.log(form.value.name);
+    console.log(form.value.occassiontype);
+    console.log(form.value.occassiondate);
+    console.log(form.value.reminder);
+    console.log(form.value.offset);
     if(this.editMode){
       this.editOccassion.name = form.value.name;
       this.editOccassion.occassionDate = form.value.occassiondate;
       this.editOccassion.occassionType = form.value.occassiontype;
       this.editOccassion.offsetReminder = form.value.offset;
       this.editOccassion.reminderOn = form.value.reminder;
-      this.occasionService.editOccassion
+      //this.occasionService.editOccassion(this.editOccassion);
     }
     else{
-      this.occasionService.addOccassion(new Occassion(length + 1, form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
+      this.occasionService.addOccassion(new Occassion(form.value.name, form.value.occassiontype, new Date(form.value.occassiondate), form.value.reminder, form.value.offset));
     }
-    form.reset();
+    //form.reset();
     this.router.navigate(['occassions']);
   }
   onCancel(){

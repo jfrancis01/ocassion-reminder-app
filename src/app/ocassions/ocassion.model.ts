@@ -7,8 +7,7 @@ export class Occassion{
     public offsetReminder: string
     public userID:string;
 
-    constructor(occassionID:Number, name:string, occassionType: string, occassionDate: Date, reminderOn:boolean, offsetReminder: string){
-        this.occassionID = occassionID;
+    constructor(name:string, occassionType: string, occassionDate: Date, reminderOn:boolean, offsetReminder: string){
         this.name = name;
         this.occassionType = occassionType;
         this.occassionDate = occassionDate;
