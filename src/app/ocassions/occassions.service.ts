@@ -8,8 +8,8 @@ import { Inject, Injectable } from "@angular/core";
 export class OccassionsService{
 
     occassionsChanged = new Subject<Occassion[]>
-    private occassions: Occassion[] = [ 
-      ];
+    private occassions: Occassion[] = [];
+    private occassion: Occassion;
 
     constructor(private http: HttpClient){
 
@@ -34,8 +34,20 @@ export class OccassionsService{
         this.occassionsChanged.next(this.occassions.slice());
     }
 
-    getOccassion(index: Number){
-        return this.occassions[index.valueOf()];
+    setOccassion(occassion: Occassion){
+        console.log(occassion);
+        this.occassion = occassion;
+    }
+
+    getOccassion(index: number){
+        this. occassion = new Occassion("", "",new Date(), false, "");
+        const httpOptions = {
+            headers: {'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'},
+            params:{"occassionID": index}
+          }
+          this.http.get<Occassion>('http://localhost:8009/occassionsreminder/occassion', httpOptions)
+          .subscribe((occassion)=> this.setOccassion(occassion));
+        return this.occassion;
     }
 
     addOccassion(occassion: Occassion){

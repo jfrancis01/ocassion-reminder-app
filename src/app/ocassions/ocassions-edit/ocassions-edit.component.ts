@@ -27,7 +27,7 @@ export class OcassionsEditComponent {
     ["day before", 1],
     ["day off", 2]
   ]);
-  id: Number;
+  id: number;
   editMode = false;
   editOccassion: Occassion;
   occassionForm: FormGroup;
@@ -40,14 +40,13 @@ export class OcassionsEditComponent {
 
   ngOnInit(){
     this.id = Number(this.route.snapshot.queryParamMap.get('id'));
-    this.id = Number(this.id) - Number(1);
     this.editMode = this.id !== -1;
     console.log("Received: " + this.id + " , editMode: " + this.editMode);
     this.populateForm(this.id);
 
   }
   
-  private populateForm(index: Number){
+  private populateForm(index: number){
     let name:string = "";
     let occassionDate:Date  = new Date();
     let occassionType:string = ""
@@ -55,11 +54,7 @@ export class OcassionsEditComponent {
     let reminder:Boolean = false;
     if(this.editMode && Number(this.id) > -1){
       this.editOccassion = this.occasionService.getOccassion(index);
-      this.occasionTypeIndex = this.occassionMap.get(this.editOccassion.occassionType.toString());
-      console.log(this.occasionTypeIndex);
-      this.reminderOffsetIndex = this.offsetMap.get(this.editOccassion.offsetReminder.toString());
-      console.log(this.reminderOffsetIndex);
-      name = this.editOccassion.name
+      name = this.editOccassion.name;
       occassionDate = this.editOccassion.occassionDate;
       occassionType = this.editOccassion.occassionType;
       offset = this.editOccassion.offsetReminder;

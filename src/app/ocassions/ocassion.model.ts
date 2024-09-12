@@ -1,5 +1,5 @@
 export class Occassion{
-    public occassionID: Number;
+    public occassionID: number;
     public name: string;
     public occassionType: string;
     public occassionDate: Date;
