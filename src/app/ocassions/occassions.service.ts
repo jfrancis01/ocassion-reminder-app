@@ -3,6 +3,7 @@ import { Occassion } from "./ocassion.model";
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs-compat";
 
 @Injectable({providedIn:'root'})
 export class OccassionsService{
@@ -39,15 +40,13 @@ export class OccassionsService{
         this.occassion = occassion;
     }
 
-    getOccassion(index: number){
+    getOccassion(index: number):Observable<Occassion>{
         this. occassion = new Occassion("", "",new Date(), false, "");
         const httpOptions = {
             headers: {'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'},
             params:{"occassionID": index}
           }
-          this.http.get<Occassion>('http://localhost:8009/occassionsreminder/occassion', httpOptions)
-          .subscribe((occassion)=> this.setOccassion(occassion));
-        return this.occassion;
+          return this.http.get<Occassion>('http://localhost:8009/occassionsreminder/occassion', httpOptions)
     }
 
     addOccassion(occassion: Occassion){

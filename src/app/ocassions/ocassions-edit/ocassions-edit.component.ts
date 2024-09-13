@@ -52,21 +52,30 @@ export class OcassionsEditComponent {
     let occassionType:string = ""
     let offset:string = ""
     let reminder:Boolean = false;
-    if(this.editMode && Number(this.id) > -1){
-      this.editOccassion = this.occasionService.getOccassion(index);
-      name = this.editOccassion.name;
-      occassionDate = this.editOccassion.occassionDate;
-      occassionType = this.editOccassion.occassionType;
-      offset = this.editOccassion.offsetReminder;
-      reminder = this.editOccassion.reminderOn;
-    } 
+    
     this.occassionForm = new FormGroup({
       'name': new FormControl(name, Validators.required),
-      'occassiondate': new FormControl(this.datepipe.transform(occassionDate, 'yyyy-MM-dd'), Validators.required),
+      //'occassiondate': new FormControl(this.datepipe.transform(occassionDate, 'yyyy-MM-dd'), Validators.required),
+      'occassiondate': new FormControl(occassionDate),
       'occassiontype': new FormControl(occassionType, Validators.required),
       'offset': new FormControl(offset, Validators.required),
       'reminder': new FormControl(reminder)
     });
+
+    if(this.editMode && Number(this.id) > -1){
+      this.occasionService.getOccassion(index).subscribe(occassion =>
+        {
+          this.occassionForm.patchValue({
+            name: occassion.name,
+            occassiondate: occassion.occassionDate,
+            occassiontype: occassion.occassionType,
+            offset: occassion.offsetReminder,
+            reminder: occassion.reminderOn
+          });
+        }
+        )
+    } 
+
   }
 
   onSubmit(form: NgForm){
