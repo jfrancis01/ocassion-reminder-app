@@ -1,13 +1,13 @@
 export class Occassion{
     public occassionID: number;
-    public name: string;
-    public occassionType: string;
+    public name: String;
+    public occassionType: String;
     public occassionDate: Date;
     public reminderOn: Boolean = false;
-    public offsetReminder: string
-    public userID:string;
+    public offsetReminder: String
+    public userID:String;
 
-    constructor(name:string, occassionType: string, occassionDate: Date, reminderOn:boolean, offsetReminder: string){
+    constructor(name:String, occassionType: String, occassionDate: Date, reminderOn:boolean, offsetReminder: String){
         this.name = name;
         this.occassionType = occassionType;
         this.occassionDate = occassionDate;

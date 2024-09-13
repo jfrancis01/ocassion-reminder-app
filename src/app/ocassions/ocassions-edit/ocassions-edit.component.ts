@@ -55,8 +55,8 @@ export class OcassionsEditComponent {
     
     this.occassionForm = new FormGroup({
       'name': new FormControl(name, Validators.required),
-      //'occassiondate': new FormControl(this.datepipe.transform(occassionDate, 'yyyy-MM-dd'), Validators.required),
-      'occassiondate': new FormControl(occassionDate),
+      'occassiondate': new FormControl(this.datepipe.transform(occassionDate, 'yyyy-MM-dd'), Validators.required),
+      //'occassiondate': new FormControl(occassionDate),
       'occassiontype': new FormControl(occassionType, Validators.required),
       'offset': new FormControl(offset, Validators.required),
       'reminder': new FormControl(reminder)
@@ -67,7 +67,7 @@ export class OcassionsEditComponent {
         {
           this.occassionForm.patchValue({
             name: occassion.name,
-            occassiondate: occassion.occassionDate,
+            occassiondate: this.datepipe.transform(occassion.occassionDate, 'yyyy-MM-dd'),
             occassiontype: occassion.occassionType,
             offset: occassion.offsetReminder,
             reminder: occassion.reminderOn
@@ -95,7 +95,7 @@ export class OcassionsEditComponent {
       //this.occasionService.editOccassion(this.editOccassion);
     }
     else{
-      this.occasionService.addOccassion(new Occassion(form.value.name, form.value.occassiontype, new Date(form.value.occassiondate), form.value.reminder, form.value.offset));
+      this.occasionService.addOccassion(new Occassion(form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
     }
     //form.reset();
     this.router.navigate(['occassions']);
