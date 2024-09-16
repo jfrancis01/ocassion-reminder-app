@@ -7,7 +7,6 @@ import { Observable } from "rxjs-compat";
 
 @Injectable({providedIn:'root'})
 export class OccassionsService{
-
     occassionsChanged = new Subject<Occassion[]>
     private occassions: Occassion[] = [];
     private occassion: Occassion;
@@ -59,6 +58,12 @@ export class OccassionsService{
     }
 
     editOccassion(occassion: Occassion, index: number){
+        occassion.userID = "59c02271-c03e-4c99-92c1-a50fa1131b2e";
+        occassion.occassionID = index;
+        const headers = {'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'}
+        this.http.put('http://localhost:8009/occassionsreminder/edit', occassion, {headers}).subscribe(responseData =>{
+            console.log(responseData);
+        });
         this.occassions[index] = occassion;
         this.occassionsChanged.next(this.occassions);
     }

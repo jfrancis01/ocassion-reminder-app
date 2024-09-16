@@ -31,8 +31,6 @@ export class OcassionsEditComponent {
   editMode = false;
   editOccassion: Occassion;
   occassionForm: FormGroup;
-  occasionTypeIndex = -1;
-  reminderOffsetIndex = -1;
 
   constructor(private occasionService: OccassionsService, private router:Router, private route:ActivatedRoute, private datepipe: DatePipe){
  
@@ -56,7 +54,6 @@ export class OcassionsEditComponent {
     this.occassionForm = new FormGroup({
       'name': new FormControl(name, Validators.required),
       'occassiondate': new FormControl(this.datepipe.transform(occassionDate, 'yyyy-MM-dd'), Validators.required),
-      //'occassiondate': new FormControl(occassionDate),
       'occassiontype': new FormControl(occassionType, Validators.required),
       'offset': new FormControl(offset, Validators.required),
       'reminder': new FormControl(reminder)
@@ -87,12 +84,7 @@ export class OcassionsEditComponent {
     console.log(form.value.reminder);
     console.log(form.value.offset);
     if(this.editMode){
-      this.editOccassion.name = form.value.name;
-      this.editOccassion.occassionDate = form.value.occassiondate;
-      this.editOccassion.occassionType = form.value.occassiontype;
-      this.editOccassion.offsetReminder = form.value.offset;
-      this.editOccassion.reminderOn = form.value.reminder;
-      //this.occasionService.editOccassion(this.editOccassion);
+      this.occasionService.editOccassion(new Occassion(form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset), this.id);
     }
     else{
       this.occasionService.addOccassion(new Occassion(form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
