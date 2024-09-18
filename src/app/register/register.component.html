@@ -9,13 +9,19 @@
         <div class="form-row">
             <div class="col form-group">
                 <label>First name </label>   
-                  <input required name="firstname" [(ngModel)]="userData.firstName" type="text" class="form-control" #firstname="ngModel">
-                  <span class="help-block" style="font-size: small;" *ngIf="!firstname.valid && firstname.touched">Please enter your first name</span>
+                  <input required name="firstname" pattern="^[a-zA-Z ]*$" [(ngModel)]="userData.firstName" type="text" class="form-control" #firstname="ngModel">
+                  <div *ngIf="(firstname.invalid && firstname.touched) || firstname.dirty">
+                    <small class="text-danger" *ngIf="firstname.errors?.pattern">Only alphabets allowed</small>
+                    <small class="text-danger" *ngIf="firstname.errors?.required">Please enter your first name</small>
+                  </div>
             </div> <!-- form-group end.// -->
-            <div class="col form-group">
+            <div class="col form-group">    
                 <label>Last name</label>
-                  <input required name="lastname" [(ngModel)]="userData.lastName"  type="text" class="form-control" #lastname="ngModel">
-                  <span class="help-block" style="font-size: small;" *ngIf="!lastname.valid && lastname.touched">Please enter your last name</span>
+                  <input required name="lastname" pattern="^[a-zA-Z ]*$" [(ngModel)]="userData.lastName"  type="text" class="form-control" #lastname="ngModel">
+                  <div *ngIf="(lastname.invalid && lastname.touched) || lastname.dirty">
+                    <small class="text-danger" *ngIf="lastname.errors?.pattern">Only alphabets allowed</small>
+                    <small class="text-danger" *ngIf="lastname.errors?.required">Please enter your last name</small>
+                  </div>
             </div> <!-- form-group end.// -->
         </div> <!-- form-row end.// -->
         <div class="form-group">
