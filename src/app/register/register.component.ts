@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientJsonpModule, HttpClientModule, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientJsonpModule, HttpClientModule, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -29,11 +29,16 @@ export class RegisterComponent implements OnInit {
     this.userData.lastName = form.value.lastname;
     this.userData.email = form.value.email;
     this.userData.password = form.value.password;
- 
-    this.http.post<Response>('http://localhost:8009/occassionsreminder/register', this.userData).subscribe(responseData =>{
+     
+    this.http.post('http://localhost:8009/occassionsreminder/register', this.userData, {
+      responseType: 'json'
+    }).subscribe(responseData =>{
+      
+      console.log("No error");
       console.log(responseData);
     },
     error => {
+      this.error = error.error;
       console.log(error);
     }
   );
