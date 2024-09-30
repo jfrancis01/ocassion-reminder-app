@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     const password = form.value.password;
     this.authService.login(emial, password).subscribe(responseData =>{
       console.log(responseData);
+      console.log(responseData.userID);
       localStorage.setItem("userID", responseData.userID);
       this.router.navigate(['occassions'], {queryParams:{userID:responseData.userID}})
     },
