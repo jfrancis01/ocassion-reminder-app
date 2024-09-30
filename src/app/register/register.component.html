@@ -12,7 +12,7 @@
         <div class="form-row">
             <div class="col form-group">
                 <label>First name </label>   
-                  <input required name="firstname" pattern="^[a-zA-Z ]*$" [(ngModel)]="userData.firstName" type="text" class="form-control" #firstname="ngModel">
+                  <input required name="firstname" placeholder="Enter your first name" pattern="^[a-zA-Z ]*$" [(ngModel)]="userData.firstName" type="text" class="form-control" #firstname="ngModel">
                   <div *ngIf="(firstname.invalid && firstname.touched) || firstname.dirty">
                     <small class="text-danger" *ngIf="firstname.errors?.pattern">Only alphabets allowed</small>
                     <small class="text-danger" *ngIf="firstname.errors?.required">Please enter your first name</small>

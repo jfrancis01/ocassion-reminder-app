@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { OccassionsService } from './ocassions/occassions.service';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common
     OcassionsListComponent,
     OcassionsEditComponent,
     RegisterComponent,
+    LoginComponent,
     DropdownDirective
 
   ],

@@ -36,13 +36,14 @@ export class RegisterComponent implements OnInit {
       
       console.log("No error");
       console.log(responseData);
+      this.router.navigate(['/login']);
+      form.reset();
     },
     error => {
       this.error = error.error;
       console.log(error);
     }
   );
-    //form.reset();
   }
 
   login(){
