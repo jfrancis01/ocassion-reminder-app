@@ -11,6 +11,7 @@ import { DropdownDirective } from './directives/dropdown.directive';
 import { OccassionsService } from './ocassions/occassions.service';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth/AuthService';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [OccassionsService],
+  providers: [OccassionsService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

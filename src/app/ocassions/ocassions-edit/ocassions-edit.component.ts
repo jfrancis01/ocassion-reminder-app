@@ -11,7 +11,7 @@ import { DATE_PIPE_DEFAULT_OPTIONS, DatePipe } from '@angular/common';
   styleUrl: './ocassions-edit.component.css',
   providers:[DatePipe]
 })
-export class OcassionsEditComponent {
+export class OcassionsEditComponent implements OnInit{
 
   occassiontypes = ['Birthday', 'Anniversary', 'Graduation', 'Confirmation', 'Wedding'];
   offsets = ['week before', 'day before', 'day off'];

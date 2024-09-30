@@ -1,5 +1,6 @@
 <div class="row justify-content-center">
     <div style="padding-top: 100px;" class="col-md-6">
+    <div class="alert alert-danger" *ngIf="error">{{error.error}}</div>
     <div class="card">
     <header class="card-header">
         <h4 class="card-title mt-2">Login</h4>
@@ -17,13 +18,13 @@
         </div> <!-- form-group end.// -->
         <div class="form-group">
             <label>Enter password</label>
-            <input ngModel class="form-control" name="password" type="password" placeholder="Enter a password" required #password="ngModel">
+            <input ngModel class="form-control" name="password" type="password" placeholder="Enter your password" required #password="ngModel">
             <div *ngIf="(password.invalid && password.touched) || password.dirty">
                 <small class="text-danger" *ngIf="password.errors?.required">Please enter your first name</small>
               </div>
         </div> <!-- form-group end.// -->  
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block" *ngIf="!f.valid">Login</button>
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!f.valid">Login</button>
         </div> <!-- form-group// -->                                             
     </form>
     </article> <!-- card-body end .// -->

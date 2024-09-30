@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Occassion } from '../ocassion.model';
 import { OccassionsService } from '../occassions.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ export class OcassionsListComponent implements OnInit, OnDestroy{
   id:Number;
   private occassionChangedSub : Subscription;
 
-  constructor(private occasionsService: OccassionsService, private router: Router){
+  constructor(private occasionsService: OccassionsService, private router: Router, private route:ActivatedRoute){
 
   }
 
@@ -33,6 +33,7 @@ export class OcassionsListComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+      this.id = Number(this.route.snapshot.queryParamMap.get('userID'));
       this.occassions = this.occasionsService.getOccassions();
       this.occassionChangedSub = this.occasionsService.occassionsChanged.subscribe(
         (occassions: Occassion[]) => {

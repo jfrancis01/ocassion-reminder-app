@@ -22,7 +22,7 @@ export class OccassionsService{
     getOccassions(){
         const httpOptions = {
             headers: {'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'},
-            params:{"userID": "59c02271-c03e-4c99-92c1-a50fa1131b2e"}
+            params:{"userID": localStorage.getItem("userID")}
           }
         this.http.get<Occassion[]>('http://localhost:8009/occassionsreminder/occassions',httpOptions)
         .subscribe((occassions)=> this.setOccassions(occassions));
@@ -50,7 +50,7 @@ export class OccassionsService{
 
     addOccassion(occassion: Occassion){
         this.occassions.push(occassion);
-        occassion.userID = "59c02271-c03e-4c99-92c1-a50fa1131b2e";
+        occassion.userID = localStorage.getItem("userID");
         this.http.post('http://localhost:8009/occassionsreminder/add', occassion).subscribe(responseData =>{
             console.log(responseData);
           });
@@ -58,7 +58,7 @@ export class OccassionsService{
     }
 
     editOccassion(occassion: Occassion, index: number){
-        occassion.userID = "59c02271-c03e-4c99-92c1-a50fa1131b2e";
+        occassion.userID = localStorage.getItem("userID");
         occassion.occassionID = index;
         const headers = {'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'}
         this.http.put('http://localhost:8009/occassionsreminder/edit', occassion, {headers}).subscribe(responseData =>{
