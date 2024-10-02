@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(emial, password).subscribe(responseData =>{
       console.log(responseData);
       console.log(responseData.userID);
-      localStorage.setItem("userID", responseData.userID);
-      this.router.navigate(['occassions'], {queryParams:{userID:responseData.userID}})
+      window.sessionStorage.setItem("userID", responseData.userID);
+      this.router.navigate(['occassions'], {queryParams:{"userID":responseData.userID}})
     },
     error => {
       this.error = error;
-      console.log(error);
+      console.log(error.error.text);
 
     })
     form.reset();

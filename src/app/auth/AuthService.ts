@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 interface AuthResponseData{
-    userID: string
+    userID: string;
+    authStatus: 'AUTH';
 }
 
 @Injectable()
@@ -14,7 +15,7 @@ export class AuthService{
 
     }
 
-    login(username:string, password:string){
+    login(username:string, password:string){ 
        return this.http.post<AuthResponseData>(
             this.LOGIN_URL, {email: username, password: password}
         )
