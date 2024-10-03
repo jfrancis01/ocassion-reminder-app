@@ -12,6 +12,7 @@ import { OccassionsService } from './ocassions/occassions.service';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth/AuthService';
+import { LoadingSpinner } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthService } from './auth/AuthService';
     OcassionsEditComponent,
     RegisterComponent,
     LoginComponent,
-    DropdownDirective
+    DropdownDirective,
+    LoadingSpinner
 
   ],
   imports: [

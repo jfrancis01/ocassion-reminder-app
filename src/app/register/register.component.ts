@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
 
   userData: User;
   error:string = null;
+  isLoading = false;
 
   constructor(private router:Router, private http:HttpClient){
 
@@ -29,7 +30,9 @@ export class RegisterComponent implements OnInit {
     this.userData.lastName = form.value.lastname;
     this.userData.email = form.value.email;
     this.userData.password = form.value.password;
-     
+    
+    this.isLoading=true;
+    
     this.http.post('http://localhost:8009/occassionsreminder/register', this.userData, {
       responseType: 'json'
     }).subscribe(responseData =>{
@@ -37,11 +40,13 @@ export class RegisterComponent implements OnInit {
       console.log("No error");
       console.log(responseData);
       this.router.navigate(['/login']);
+      this.isLoading= false;
       form.reset();
     },
     error => {
       this.error = error.error;
       console.log(error);
+      this.isLoading= false;
     }
   );
   }
