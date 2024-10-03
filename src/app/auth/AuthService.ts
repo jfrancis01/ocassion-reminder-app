@@ -5,7 +5,7 @@ import { LoggedInUser } from "./LoggedInUser.model";
 
 export interface AuthResponseData{
     userID: string;
-    authStatus: string;
+    authStatus: boolean;
 }
 
 @Injectable()
