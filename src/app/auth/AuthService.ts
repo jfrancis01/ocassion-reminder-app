@@ -21,7 +21,8 @@ export class AuthService{
        return this.http.post<AuthResponseData>(
             this.LOGIN_URL, {email: username, password: password}
         ).pipe(catchError(errorResponse =>{
-            return throwError(errorResponse.error.error.text)
+            console.log(errorResponse.error)
+            return throwError(errorResponse.error)
         }))
     }
 }
