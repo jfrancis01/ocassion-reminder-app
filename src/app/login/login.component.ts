@@ -1,7 +1,8 @@
 import { Component, input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth/AuthService';
+import { AuthResponseData, AuthService } from '../auth/AuthService';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { AuthService } from '../auth/AuthService';
 export class LoginComponent implements OnInit {
 
   error:string = null;
+  isLoading:boolean = false
 
   constructor(private router: Router, private authService: AuthService){
 
@@ -23,7 +25,10 @@ export class LoginComponent implements OnInit {
     console.log(form);
     const emial = form.value.email;
     const password = form.value.password;
-    this.authService.login(emial, password).subscribe(responseData =>{
+    let authObs:Observable<AuthResponseData>
+    this.isLoading = true;
+    authObs = this.authService.login(emial, password)
+    authObs.subscribe(responseData =>{
       console.log(responseData);
       console.log(responseData.userID);
       window.sessionStorage.setItem("userID", responseData.userID);
@@ -31,7 +36,7 @@ export class LoginComponent implements OnInit {
     },
     error => {
       this.error = error;
-      console.log(error.error.text);
+      this.isLoading = false;
 
     })
     form.reset();

@@ -1,16 +1,18 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { catchError, from, Subject, tap, throwError } from "rxjs";
+import { LoggedInUser } from "./LoggedInUser.model";
 
-interface AuthResponseData{
+export interface AuthResponseData{
     userID: string;
-    authStatus: 'AUTH';
+    authStatus: string;
 }
 
 @Injectable()
 export class AuthService{
 
     LOGIN_URL = "http://localhost:8009/occassionsreminder/login";
-    
+    loggedInUser = new Subject<LoggedInUser>();
     constructor(private http:HttpClient){
 
     }
@@ -18,6 +20,8 @@ export class AuthService{
     login(username:string, password:string){ 
        return this.http.post<AuthResponseData>(
             this.LOGIN_URL, {email: username, password: password}
-        )
+        ).pipe(catchError(errorResponse =>{
+            return throwError(errorResponse.error.error.text)
+        }))
     }
 }
