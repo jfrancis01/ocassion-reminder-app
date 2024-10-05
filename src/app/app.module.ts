@@ -9,10 +9,11 @@ import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from './app-routing';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { OccassionsService } from './ocassions/occassions.service';
-import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth/AuthService';
 import { LoadingSpinner } from './loading-spinner/loading-spinner.component';
+import { AuthInterceptor } from './auth/auth-interceptor.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { LoadingSpinner } from './loading-spinner/loading-spinner.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [OccassionsService, AuthService],
+  providers: [OccassionsService, AuthService, {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
