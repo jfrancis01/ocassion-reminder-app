@@ -35,7 +35,7 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [OccassionsService, AuthService, {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor}],
+  providers: [OccassionsService, AuthService, {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

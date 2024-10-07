@@ -11,16 +11,17 @@ export class AuthInterceptor implements HttpInterceptor{
     user = new LoggedInUser();
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let httpHeaders = new HttpHeaders();
-        if(sessionStorage.getItem("logginData")){
+        if(sessionStorage.getItem("loggedInData")){
             this.user = JSON.parse(sessionStorage.getItem("loggedInData")!);
         }
-        let xsrf = sessionStorage.getItem('XSRF-TOKEN');
+        let xsrf = sessionStorage.getItem('xsrf');
         if(xsrf){
           httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);
         }
         httpHeaders = httpHeaders.append('X-Requested-With', 'XMLHttpRequest');
         const xhr = req.clone({
-          headers: httpHeaders
+          headers: httpHeaders,
+          withCredentials:true
         });
 
         return next.handle(xhr).pipe(tap((err:any) =>{
