@@ -20,7 +20,6 @@ export class OccassionsService{
     }
     getOccassions(){
         const httpOptions = {
-            headers: {'Access-Control-Allow-Origin': '*'},
             params:{"userID": sessionStorage.getItem("userID")}
           }
         this.http.get<Occassion[]>('http://localhost:8009/occassionsreminder/occassions', httpOptions)
