@@ -24,30 +24,27 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    console.log(form);
     const emial = form.value.email;
     const password = form.value.password;
     let authObs:Observable<AuthResponseData | any>
     this.isLoading = true;
     authObs = this.authService.login(emial, password)
-    authObs.subscribe((responseData:AuthResponseData) =>{
-      console.log(responseData);
-      console.log(responseData.userID);
-      window.sessionStorage.setItem("userID", responseData.userID);
-      window.sessionStorage.setItem("loggedInData", JSON.stringify(responseData));
-      let xsrf = getCookie("XSRF-TOKEN")!;
-      window.sessionStorage.setItem("xsrf", xsrf);
-      this.router.navigate(['occassions'], {queryParams:{"userID":responseData.userID}})
-    },
-    error => {
-      this.error = error;
-      this.isLoading = false;
-
+    authObs.subscribe({
+      next: (responseData) =>{
+        sessionStorage.setItem("userID", responseData.userID);
+        sessionStorage.setItem("loggedInData", JSON.stringify(responseData));
+        let xsrf = getCookie("XSRF-TOKEN")!;
+        window.sessionStorage.setItem("xsrf", xsrf);
+        this.router.navigate(['occassions'], {queryParams:{"userID":responseData.userID}})
+      },
+      error: (error) =>{
+        this.error = error;
+        this.isLoading = false;
+      }
     })
     form.reset();
   }
   register(){
-    console.log("clicked");
     this.router.navigate(['/register']);
   }
 }

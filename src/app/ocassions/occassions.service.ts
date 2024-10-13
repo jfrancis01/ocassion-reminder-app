@@ -40,7 +40,6 @@ export class OccassionsService{
     getOccassion(index: number):Observable<Occassion>{
         this. occassion = new Occassion("", "",new Date(), false, "");
         const httpOptions = {
-            //headers: {'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET, POST'},
             params:{"occassionID": index}
           }
           return this.http.get<Occassion>('http://localhost:8009/occassionsreminder/occassion', httpOptions)
@@ -58,8 +57,7 @@ export class OccassionsService{
     editOccassion(occassion: Occassion, index: number){
         occassion.userID = localStorage.getItem("userID");
         occassion.occassionID = index;
-        const headers = {'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'}
-        this.http.put('http://localhost:8009/occassionsreminder/edit', occassion, {headers}).subscribe(responseData =>{
+        this.http.put('http://localhost:8009/occassionsreminder/edit', occassion).subscribe(responseData =>{
             console.log(responseData);
         });
         this.occassions[index] = occassion;

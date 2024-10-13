@@ -22,11 +22,6 @@ export class AuthService{
     login(username:string, password:string){
         sessionStorage.setItem("username", username);
         sessionStorage.setItem("password", password);
-     //   let headers = new Headers();
-    //    headers.append("Authorization", "Basic " + btoa(username + ":" + password));  
-     //   const httpOptions = {
-     //       headers: {'Authorization': 'Basic ' + window.btoa(username + ':' + password)}
-      //    }
        return this.http.get<AuthResponseData>(
             this.LOGIN_URL,
         ).pipe(catchError(errorResponse =>{
