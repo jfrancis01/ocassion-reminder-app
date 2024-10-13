@@ -14,6 +14,9 @@ export class AuthInterceptor implements HttpInterceptor{
         if(sessionStorage.getItem("loggedInData")){
             this.user = JSON.parse(sessionStorage.getItem("loggedInData")!);
         }
+        else{
+            httpHeaders = httpHeaders.append('Authorization', 'Basic ' + window.btoa(sessionStorage.getItem("username")+ ':' + sessionStorage.getItem("password")));
+        }
         let xsrf = sessionStorage.getItem('xsrf');
         if(xsrf){
           httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);
