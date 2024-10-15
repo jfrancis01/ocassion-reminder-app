@@ -11,9 +11,6 @@ export class AuthInterceptor implements HttpInterceptor{
     user = new LoggedInUser();
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let httpHeaders = new HttpHeaders();
-        if(sessionStorage.getItem("loggedInData")){
-            this.user = JSON.parse(sessionStorage.getItem("loggedInData")!);
-        }
         if(req.url === "http://localhost:8009/occassionsreminder/login" ){
             httpHeaders = httpHeaders.append('Authorization', 'Basic ' + window.btoa(sessionStorage.getItem("username")+ ':' + sessionStorage.getItem("password")));
         }

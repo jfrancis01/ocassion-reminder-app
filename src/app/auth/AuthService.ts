@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, from, Subject, tap, throwError } from "rxjs";
 import { LoggedInUser } from "./LoggedInUser.model";
 import { catchError } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 export interface AuthResponseData{
     userID: string;
@@ -15,8 +16,17 @@ export class AuthService{
 
     LOGIN_URL = "http://localhost:8009/occassionsreminder/login";
     loggedInUser = new BehaviorSubject<LoggedInUser>(null);
-    constructor(private http:HttpClient){
+    constructor(private http:HttpClient, private router:Router){
 
+    }
+
+    autoLogin(){
+        const loggedInUser:LoggedInUser = JSON.parse(sessionStorage.getItem("loggedInData")!);
+        if(!loggedInUser){
+            this.router.navigate(['/login']);
+            return;
+        }
+        this.loggedInUser.next(loggedInUser);
     }
 
     login(username:string, password:string){
