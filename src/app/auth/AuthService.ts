@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponseBase } from "@angular/common/http";
 import { BehaviorSubject, from, Subject, tap, throwError } from "rxjs";
 import { LoggedInUser } from "./LoggedInUser.model";
 import { catchError } from "rxjs/operators";
@@ -9,6 +9,8 @@ export interface AuthResponseData{
     userID: string;
     email:string;
     authStatus: boolean;
+    firstName:string;
+    lastName:string;
 }
 
 @Injectable()
@@ -39,7 +41,7 @@ export class AuthService{
             return throwError(errorResponse.error)
         }),tap((responseData:AuthResponseData) =>{
             const expiresOn = new Date(new Date().getTime() + 3600 * 1000 );
-            const loggedInUser = new LoggedInUser(responseData.userID, responseData.email, responseData.authStatus, expiresOn);
+            const loggedInUser = new LoggedInUser(responseData.userID, responseData.email, responseData.authStatus, expiresOn, responseData.firstName, responseData.lastName);
             this.loggedInUser.next(loggedInUser);
         }))
     }
