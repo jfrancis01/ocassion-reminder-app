@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth/AuthService';
 import { LoadingSpinner } from './loading-spinner/loading-spinner.component';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
     RegisterComponent,
     LoginComponent,
     DropdownDirective,
-    LoadingSpinner
+    LoadingSpinner,
+    HomeComponent
 
   ],
   imports: [

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("loggedInData", JSON.stringify(responseData));
         let xsrf = getCookie("XSRF-TOKEN")!;
         window.sessionStorage.setItem("xsrf", xsrf);
-        this.router.navigate(['occassions'], {queryParams:{"userID":responseData.userID}})
+        this.router.navigate(['home'], {queryParams:{"userID":responseData.userID}})
       },
       error: (error) =>{
         this.error = error;

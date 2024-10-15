@@ -1,0 +1,17 @@
+.home-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.banner-image {
+    padding-top:500px;
+    width: 100%;
+    height: 100%;
+    min-height: 500px; /* Added to show image */
+    background-image: url(/assets/days.png) ;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
