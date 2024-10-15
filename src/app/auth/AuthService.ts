@@ -33,4 +33,9 @@ export class AuthService{
             this.loggedInUser.next(loggedInUser);
         }))
     }
+
+    logout(){
+        this.loggedInUser.next(null);
+        sessionStorage.clear();
+    }
 }
