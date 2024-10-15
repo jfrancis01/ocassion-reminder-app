@@ -5,11 +5,12 @@ import { OcassionsEditComponent } from "./ocassions/ocassions-edit/ocassions-edi
 import { RegisterComponent } from "./register/register.component";
 import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 const appRoutes: Routes =[
     {path:'', redirectTo: '/login', pathMatch: 'full'},
     {path:'login', component: LoginComponent},
-    {path:'home', component: HomeComponent},
+    {path:'home', component: HomeComponent, canActivate:[AuthGuard]},
     {path:'occassions', component: OcassionsListComponent},
     {path:'add', component:OcassionsEditComponent},
     {path:'edit', component:OcassionsEditComponent},

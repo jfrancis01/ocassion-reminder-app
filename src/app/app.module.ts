@@ -15,6 +15,7 @@ import { AuthService } from './auth/AuthService';
 import { LoadingSpinner } from './loading-spinner/loading-spinner.component';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [OccassionsService, AuthService, {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}],
+  providers: [OccassionsService, AuthService, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
