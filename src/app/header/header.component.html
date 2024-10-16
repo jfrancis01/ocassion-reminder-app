@@ -11,7 +11,7 @@
       <li class="nav-item">
         <a class="nav-link dropdown-toggle" [hidden]="!isAuthenticated" appDropdown role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img height="25px" width="25px" src="assets/user.png"></a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" style="cursor: pointer;">Edit Profile</a>
+          <a class="dropdown-item" routerLink="/editUser" style="cursor: pointer;">Edit Profile</a>
           <a class="dropdown-item" (click)="onLogOut()" style="cursor: pointer;">Log Out</a>
         </div>
       </li>

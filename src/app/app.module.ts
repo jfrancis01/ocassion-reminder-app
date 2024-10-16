@@ -16,6 +16,7 @@ import { LoadingSpinner } from './loading-spinner/loading-spinner.component';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
+import { UpdateComponent } from './update/update.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AuthGuard } from './auth/auth.guard';
     LoginComponent,
     DropdownDirective,
     LoadingSpinner,
-    HomeComponent
+    HomeComponent,
+    UpdateComponent
 
   ],
   imports: [

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpClientJsonpModule, HttpClientModule, HttpR
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from './user.model';
+import { User } from '../shared/user.model';
 
 @Component({
   selector: 'app-register',

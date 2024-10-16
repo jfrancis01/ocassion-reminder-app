@@ -6,6 +6,7 @@ import { RegisterComponent } from "./register/register.component";
 import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./auth/auth.guard";
+import { UpdateComponent } from "./update/update.component";
 
 const appRoutes: Routes =[
     {path:'', redirectTo: '/login', pathMatch: 'full'},
@@ -14,6 +15,7 @@ const appRoutes: Routes =[
     {path:'occassions', component: OcassionsListComponent},
     {path:'add', component:OcassionsEditComponent},
     {path:'edit', component:OcassionsEditComponent},
+    {path:'editUser', component:UpdateComponent},
     {path:'register', component: RegisterComponent}
 ];
 @NgModule({

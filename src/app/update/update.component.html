@@ -1,0 +1,36 @@
+<div class="container col-lg-6">
+    <div class="alert alert-danger" *ngIf="error">
+        <p>{{error}}</p>
+      </div>
+    <h1>Update Profile</h1>
+    <form (ngSubmit)="onSubmit(updateForm)" #updateForm="ngForm">
+        <div class="col form-group">
+            <label>First name </label>   
+            <input required name="firstname" placeholder="Enter your first name" pattern="^[a-zA-Z ]*$" [(ngModel)]="userData.firstName" type="text" class="form-control" #firstname="ngModel">
+            <div *ngIf="(firstname.invalid && firstname.touched) || firstname.dirty">
+            <small class="text-danger" *ngIf="firstname.errors?.pattern">Only alphabets allowed</small>
+            <small class="text-danger" *ngIf="firstname.errors?.required">Please enter your first name</small>
+            </div>
+        </div> <!-- form-group end.// -->
+        <div class="col form-group">    
+            <label>Last name</label>
+            <input required name="lastname" pattern="^[a-zA-Z ]*$" [(ngModel)]="userData.lastName"  type="text" class="form-control" #lastname="ngModel">
+            <div *ngIf="(lastname.invalid && lastname.touched) || lastname.dirty">
+                <small class="text-danger" *ngIf="lastname.errors?.pattern">Only alphabets allowed</small>
+                <small class="text-danger" *ngIf="lastname.errors?.required">Please enter your last name</small>
+            </div>
+        </div> <!-- form-group end.// -->
+
+        <div class="form-group">
+            <label>Email address</label>
+            <input required name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="" type="email" class="form-control" [(ngModel)]="userData.email" #email="ngModel">
+            <div *ngIf="(email.invalid && email.touched) || email.dirty">
+                <small *ngIf="email.errors?.required" class="text-danger">Primary email is required</small>
+                <small *ngIf="email.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+                </div>
+            <div><small class="form-text text-muted">We'll never share your email with anyone else.</small></div>
+        </div> <!-- form-group end.// -->
+          <button class="btn btn-primary" type="submit" [disabled]="!updateForm.valid">Update</button>
+          <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </form>
+</div>
