@@ -5,6 +5,8 @@ import { getCookie } from "typescript-cookie";
 import { LoggedInUser } from "./LoggedInUser.model";
 import {tap} from 'rxjs'
 
+//test check into JWT stream
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor{
     
