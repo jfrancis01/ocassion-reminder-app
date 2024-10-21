@@ -16,6 +16,12 @@ export class AuthInterceptor implements HttpInterceptor{
         if(req.url === "http://localhost:8009/occassionsreminder/login" ){
             httpHeaders = httpHeaders.append('Authorization', 'Basic ' + window.btoa(sessionStorage.getItem("username")+ ':' + sessionStorage.getItem("password")));
         }
+        else{
+            let authorization = sessionStorage.getItem("Authorization");
+            if(authorization){
+                httpHeaders = httpHeaders.append('Authorization', authorization);
+            }
+        }
         let xsrf = sessionStorage.getItem('xsrf');
         if(xsrf){
           httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);

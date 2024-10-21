@@ -35,13 +35,14 @@ export class AuthService{
         sessionStorage.setItem("username", username);
         sessionStorage.setItem("password", password);
        return this.http.get<AuthResponseData>(
-            this.LOGIN_URL,
+            this.LOGIN_URL, {observe:'response'}
         ).pipe(catchError(errorResponse =>{
             console.log(errorResponse.error)
             return throwError(errorResponse.error)
-        }),tap((responseData:AuthResponseData) =>{
+        }),tap((responseData) =>{
+            const data:AuthResponseData = responseData.body;
             const expiresOn = new Date(new Date().getTime() + 3600 * 1000 );
-            const loggedInUser = new LoggedInUser(responseData.userID, responseData.email, responseData.authStatus, expiresOn, responseData.firstName, responseData.lastName);
+            const loggedInUser = new LoggedInUser(data.userID, data.email, data.authStatus, expiresOn, data.firstName, data.lastName);
             this.loggedInUser.next(loggedInUser);
         }))
     }

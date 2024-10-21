@@ -31,11 +31,12 @@ export class LoginComponent implements OnInit {
     authObs = this.authService.login(emial, password)
     authObs.subscribe({
       next: (responseData) =>{
-        sessionStorage.setItem("userID", responseData.userID);
-        sessionStorage.setItem("loggedInData", JSON.stringify(responseData));
+        sessionStorage.setItem("Authorization", responseData.headers.get("Authorization"))
+        sessionStorage.setItem("userID", responseData.body.userID);
+        sessionStorage.setItem("loggedInData", JSON.stringify(responseData.body));
         let xsrf = getCookie("XSRF-TOKEN")!;
         window.sessionStorage.setItem("xsrf", xsrf);
-        this.router.navigate(['home'], {queryParams:{"userID":responseData.userID}})
+        this.router.navigate(['home'], {queryParams:{"userID":responseData.body.userID}})
       },
       error: (error) =>{
         this.error = error;
