@@ -4,6 +4,7 @@ import { OccassionsService } from '../occassions.service';
 import { Occassion } from '../ocassion.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { DATE_PIPE_DEFAULT_OPTIONS, DatePipe } from '@angular/common';
+import { getCookie } from 'typescript-cookie';
 
 @Component({
   selector: 'app-ocassions-edit',
@@ -69,6 +70,10 @@ export class OcassionsEditComponent implements OnInit{
             offset: occassion.offsetReminder,
             reminder: occassion.reminderOn
           });
+          let xsrf = getCookie("XSRF-TOKEN");
+          if(xsrf){
+            window.sessionStorage.setItem("xsrf", xsrf);
+          }
         }
         )
     } 

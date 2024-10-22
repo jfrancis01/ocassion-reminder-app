@@ -3,6 +3,7 @@ import { Occassion } from '../ocassion.model';
 import { OccassionsService } from '../occassions.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { getCookie } from 'typescript-cookie';
 
 @Component({
   selector: 'app-ocassions-list',
@@ -38,6 +39,10 @@ export class OcassionsListComponent implements OnInit, OnDestroy{
       this.occassionChangedSub = this.occasionsService.occassionsChanged.subscribe(
         (occassions: Occassion[]) => {
           this.occassions = occassions;
+          let xsrf = getCookie("XSRF-TOKEN");
+      if(xsrf){
+        window.sessionStorage.setItem("xsrf", xsrf);
+      }
         }
       );
   }

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../shared/user.model';
 import { HttpClient } from '@angular/common/http';
+import { getCookie } from 'typescript-cookie';
 
 @Component({
   selector: 'app-update',
@@ -28,6 +29,10 @@ export class UpdateComponent implements OnInit{
       next: (response) =>  {
         if(!!response){
           this.userData=response;
+          let xsrf = getCookie("XSRF-TOKEN");
+          if(xsrf){
+            window.sessionStorage.setItem("xsrf", xsrf);
+          }
         }
       },
       error: (error) =>{
