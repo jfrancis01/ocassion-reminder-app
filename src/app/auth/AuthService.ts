@@ -4,6 +4,7 @@ import { BehaviorSubject, from, Subject, tap, throwError } from "rxjs";
 import { LoggedInUser } from "./LoggedInUser.model";
 import { catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { getCookie, removeCookie } from 'typescript-cookie';
 
 export interface AuthResponseData{
     userID: string;
@@ -50,5 +51,6 @@ export class AuthService{
     logout(){
         this.loggedInUser.next(null);
         sessionStorage.clear();
+        removeCookie("XSRF-TOKEN");
     }
 }
