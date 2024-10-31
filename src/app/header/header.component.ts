@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
             this.loggedInUser.lastName = this.userProfile.lastName;
             this.loggedInUser.email = this.userProfile.email;
             sessionStorage.setItem("loggedInData", JSON.stringify(this.loggedInUser));
+            window.sessionStorage.setItem("userID", this.userProfile.id);
         }
         //this.loggedInSubscription = this.authService.loggedInUser.subscribe( loggedInUser =>{
         //    this.isAuthenticated = !!loggedInUser;

@@ -38,6 +38,7 @@ export class AuthKeyClockGuard extends KeycloakAuthGuard {
         this.user.lastName = this.userProfile.lastName || "";
         this.user.email = this.userProfile.email || "";
         window.sessionStorage.setItem("loggedInData",JSON.stringify(this.user));
+        window.sessionStorage.setItem("userID", this.userProfile.id);
         return true;
     }
   }
