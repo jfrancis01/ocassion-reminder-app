@@ -8,6 +8,9 @@
       <li  class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
         <a routerLink="/add" class="nav-link">Add Occassion</a>
       </li>
+      <li  class="nav-item" routerLinkActive="active" *ngIf="!isAuthenticated">
+        <a (click)="login()" class="nav-link">Login</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link dropdown-toggle" [hidden]="!isAuthenticated" appDropdown role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img height="25px" width="25px" src="assets/user.png"></a>
         <div class="dropdown-menu">

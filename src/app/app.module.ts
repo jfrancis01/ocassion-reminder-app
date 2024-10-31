@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER,NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,15 +9,29 @@ import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from './app-routing';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { OccassionsService } from './ocassions/occassions.service';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, HttpClientXsrfModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth/AuthService';
 import { LoadingSpinner } from './loading-spinner/loading-spinner.component';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { HomeComponent } from './home/home.component';
-import { AuthGuard } from './auth/auth.guard';
 import { UpdateComponent } from './update/update.component';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8082/',
+        realm: 'OccassionReminder-dev',
+        clientId: 'occassionsreminder-angular-pkce',
+      },
+      initOptions: {
+        pkceMethod: 'S256',
+        redirectUri: 'http://localhost:4200/home',
+      },loadUserProfileAtStartUp: false
+    });
+}
 
 @NgModule({
   declarations: [
@@ -31,16 +45,27 @@ import { UpdateComponent } from './update/update.component';
     LoadingSpinner,
     HomeComponent,
     UpdateComponent
-
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-XSRF-TOKEN',
+    }),
+    KeycloakAngularModule,
+    
   ],
-  providers: [OccassionsService, AuthService, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}],
-  bootstrap: [AppComponent]
+  providers: [OccassionsService, AuthService, {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}, 
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]}
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
