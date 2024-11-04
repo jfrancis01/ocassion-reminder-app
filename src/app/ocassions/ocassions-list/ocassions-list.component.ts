@@ -14,6 +14,7 @@ import { getCookie } from 'typescript-cookie';
 export class OcassionsListComponent implements OnInit, OnDestroy{
   occassions: Occassion[];
   id:Number;
+  userID:String;
   private occassionChangedSub : Subscription;
 
   constructor(private occasionsService: OccassionsService, private router: Router, private route:ActivatedRoute){
@@ -34,15 +35,11 @@ export class OcassionsListComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-      this.id = Number(this.route.snapshot.queryParamMap.get('userID'));
+      //this.userID = sessionStorage.getItem("userID");
       this.occassions = this.occasionsService.getOccassions();
       this.occassionChangedSub = this.occasionsService.occassionsChanged.subscribe(
         (occassions: Occassion[]) => {
           this.occassions = occassions;
-          let xsrf = getCookie("XSRF-TOKEN");
-      if(xsrf){
-        window.sessionStorage.setItem("xsrf", xsrf);
-      }
         }
       );
   }

@@ -23,30 +23,30 @@ export class AuthService{
 
     }
 
-    autoLogin(){
-        const loggedInUser:LoggedInUser = JSON.parse(sessionStorage.getItem("loggedInData")!);
-        if(!loggedInUser){
-            this.router.navigate(['/login']);
-            return;
-        }
-        this.loggedInUser.next(loggedInUser);
-    }
+    // autoLogin(){
+    //     const loggedInUser:LoggedInUser = JSON.parse(sessionStorage.getItem("loggedInData")!);
+    //     if(!loggedInUser){
+    //         this.router.navigate(['/welcome']);
+    //         return;
+    //     }
+    //     this.loggedInUser.next(loggedInUser);
+    // }
 
-    login(username:string, password:string){
-        sessionStorage.setItem("username", username);
-        sessionStorage.setItem("password", password);
-       return this.http.get<AuthResponseData>(
-            this.LOGIN_URL, {observe:'response'}
-        ).pipe(catchError(errorResponse =>{
-            console.log(errorResponse.error)
-            return throwError(errorResponse.error)
-        }),tap((responseData) =>{
-            const data:AuthResponseData = responseData.body;
-            const expiresOn = new Date(new Date().getTime() + 3600 * 1000 );
-            const loggedInUser = new LoggedInUser(data.userID, data.email, data.authStatus, expiresOn, data.firstName, data.lastName);
-            this.loggedInUser.next(loggedInUser);
-        }))
-    }
+    // login(username:string, password:string){
+    //     sessionStorage.setItem("username", username);
+    //     sessionStorage.setItem("password", password);
+    //    return this.http.get<AuthResponseData>(
+    //         this.LOGIN_URL, {observe:'response'}
+    //     ).pipe(catchError(errorResponse =>{
+    //         console.log(errorResponse.error)
+    //         return throwError(errorResponse.error)
+    //     }),tap((responseData) =>{
+    //         const data:AuthResponseData = responseData.body;
+    //         const expiresOn = new Date(new Date().getTime() + 3600 * 1000 );
+    //         const loggedInUser = new LoggedInUser(data.userID, data.email, data.authStatus, expiresOn, data.firstName, data.lastName);
+    //         this.loggedInUser.next(loggedInUser);
+    //     }))
+    // }
 
     logout(){
         this.loggedInUser.next(null);

@@ -13,10 +13,10 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, Htt
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth/AuthService';
 import { LoadingSpinner } from './loading-spinner/loading-spinner.component';
-import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { HomeComponent } from './home/home.component';
 import { UpdateComponent } from './update/update.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -44,7 +44,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     DropdownDirective,
     LoadingSpinner,
     HomeComponent,
-    UpdateComponent
+    UpdateComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +60,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     KeycloakAngularModule,
     
   ],
-  providers: [OccassionsService, AuthService, {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}, 
+  providers: [OccassionsService, AuthService,
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

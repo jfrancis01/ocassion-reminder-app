@@ -7,16 +7,17 @@ import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
 import { AuthKeyClockGuard } from "./auth/auth.guard";
 import { UpdateComponent } from "./update/update.component";
+import { WelcomeComponent } from "./welcome/welcome.component";
 
 const appRoutes: Routes =[
-    {path:'', redirectTo: '/login', pathMatch: 'full'},
-    {path:'login', component: LoginComponent},
+    {path:'', redirectTo: '/welcome', pathMatch: 'full'},
+    {path:'welcome', component: WelcomeComponent},
     {path:'home', component: HomeComponent, canActivate:[AuthKeyClockGuard]},
     {path:'occassions', component: OcassionsListComponent, canActivate:[AuthKeyClockGuard]},
     {path:'add', component:OcassionsEditComponent, canActivate:[AuthKeyClockGuard]},
     {path:'edit', component:OcassionsEditComponent, canActivate:[AuthKeyClockGuard]},
     {path:'editUser', component:UpdateComponent, canActivate:[AuthKeyClockGuard]},
-    {path:'register', component: RegisterComponent, canActivate:[AuthKeyClockGuard]}
+    {path:'register', component: RegisterComponent}
 ];
 @NgModule({
     imports:[RouterModule.forRoot(appRoutes)],

@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { KeycloakService } from "keycloak-angular";
 import { LoggedInUser } from "../auth/LoggedInUser.model";
 import { KeycloakProfile } from "keycloak-js";
+import { getCookie, removeCookie } from 'typescript-cookie';
 
 @Component({
     selector: 'app-header',
@@ -47,8 +48,14 @@ export class HeaderComponent implements OnInit, OnDestroy{
         this.keyCloak.login();
     }
 
+    register(){
+        this.router.navigate(['/register']);
+    }
+
     onLogOut(){
-        this.authService.logout();
-        this.router.navigate(['/login']);
+        sessionStorage.clear();
+        removeCookie("XSRF-TOKEN");
+        let redirectUri: string = "http://localhost:4200/welcome";
+        this.keyCloak.logout(redirectUri);
     }
 }

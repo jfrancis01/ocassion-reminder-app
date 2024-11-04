@@ -19,6 +19,6 @@ export class AppComponent implements OnInit{
     this.loadedFeature = feature;
   }
   ngOnInit(): void {
-      this.authService.autoLogin();
+     /// this.authService.autoLogin();
   }
 }

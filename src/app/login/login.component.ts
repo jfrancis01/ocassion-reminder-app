@@ -23,28 +23,28 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(form: NgForm){
-    const emial = form.value.email;
-    const password = form.value.password;
-    let authObs:Observable<AuthResponseData | any>
-    this.isLoading = true;
-    authObs = this.authService.login(emial, password)
-    authObs.subscribe({
-      next: (responseData) =>{
-        sessionStorage.setItem("Authorization", responseData.headers.get("Authorization"))
-        sessionStorage.setItem("userID", responseData.body.userID);
-        sessionStorage.setItem("loggedInData", JSON.stringify(responseData.body));
-        let xsrf = getCookie("XSRF-TOKEN")!;
-        window.sessionStorage.setItem("xsrf", xsrf);
-        this.router.navigate(['home'], {queryParams:{"userID":responseData.body.userID}})
-      },
-      error: (error) =>{
-        this.error = error;
-        this.isLoading = false;
-      }
-    })
-    form.reset();
-  }
+  // onSubmit(form: NgForm){
+  //   const emial = form.value.email;
+  //   const password = form.value.password;
+  //   let authObs:Observable<AuthResponseData | any>
+  //   this.isLoading = true;
+  //   authObs = this.authService.login(emial, password)
+  //   authObs.subscribe({
+  //     next: (responseData) =>{
+  //       sessionStorage.setItem("Authorization", responseData.headers.get("Authorization"))
+  //       sessionStorage.setItem("userID", responseData.body.userID);
+  //       sessionStorage.setItem("loggedInData", JSON.stringify(responseData.body));
+  //       let xsrf = getCookie("XSRF-TOKEN")!;
+  //       window.sessionStorage.setItem("xsrf", xsrf);
+  //       this.router.navigate(['home'], {queryParams:{"userID":responseData.body.userID}})
+  //     },
+  //     error: (error) =>{
+  //       this.error = error;
+  //       this.isLoading = false;
+  //     }
+  //   })
+  //   form.reset();
+  // }
   register(){
     this.router.navigate(['/register']);
   }
