@@ -1,9 +1,50 @@
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Occassion Reminder</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item" *ngIf="!isAuthenticated">
+                  <a class="nav-link active" (click)="login()" style="cursor: pointer;" aria-current="page">Login</a>
+              </li>
+              <li class="nav-item" *ngIf="!isAuthenticated">
+                <a class="nav-link active" (click)="register()" style="cursor: pointer;" aria-current="page">Register</a>
+              </li>
+              <li class="nav-item" *ngIf="isAuthenticated">
+                <a class="nav-link active" routerLink="/occassions" aria-current="page">Ocassion  List</a>
+              </li>
+              <li class="nav-item" *ngIf="isAuthenticated">
+                <a class="nav-link active" routerLink="/add" aria-current="page">Add Ocassion</a>
+              </li>
+          </ul>
+          <ul class="navbar-nav">
+            <div class="btn-group">
+              <button appDropdown [hidden]="!isAuthenticated"  type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+               Profile Menu
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                <li><a class="dropdown-item" routerLink="/editUser" style="cursor: pointer;">Edit Profile</a></li>
+                <li><a class="dropdown-item" (click)="onLogOut()" style="cursor: pointer;">Log Out</a></li>
+              </ul>
+            </div>
+              <!--<li class="nav-item dropdown">
+                  <a appDropdown class="nav-link dropdown-toggle" [hidden]="!isAuthenticated" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Menu </a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" routerLink="/editUser" style="cursor: pointer;">Edit Profile</a></li>
+                      <li><a class="dropdown-item" (click)="onLogOut()" style="cursor: pointer;">Log Out</a></li>
+                  </ul>
+              </li>-->
+          </ul>
+      </div>
+  </div>
+</nav>
 <!-- navbar-->
-<nav class="navbar navbar-light navbar-expand-lg fixed-top shadow-sm bg-white"><a routerLink="/home"class="navbar-brand">Remember Occassions</a>
+<!--<nav class="navbar navbar-light navbar-expand-lg fixed-top shadow-sm bg-white"><a routerLink="/home"class="navbar-brand">Remember Occassions</a>
   <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
   <div id="navbarSupportedContent" class="collapse navbar-collapse">
-    <ul class="navbar-nav" ml-auto>
+    <ul class="navbar-nav" m-auto>
       <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
         <a routerLink="/occassions" class="nav-link">Ocassion List</a>
       </li>
@@ -25,7 +66,7 @@
       </li>
     </ul>
   </div>
-  </nav>
+  </nav>-->
 
   
 
