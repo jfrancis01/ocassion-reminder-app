@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/home">Occassion Reminder</a>
+      <a class="navbar-brand" routerLink="/welcome">Occassion Reminder</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
@@ -11,6 +11,9 @@
               </li>
               <li class="nav-item" *ngIf="!isAuthenticated">
                 <a class="nav-link active" (click)="register()" style="cursor: pointer;" aria-current="page">Register</a>
+              </li>
+              <li class="nav-item" *ngIf="isAuthenticated">
+                <a class="nav-link active" routerLink="/home" aria-current="page">Home</a>
               </li>
               <li class="nav-item" *ngIf="isAuthenticated">
                 <a class="nav-link active" routerLink="/occassions" aria-current="page">Ocassion  List</a>
