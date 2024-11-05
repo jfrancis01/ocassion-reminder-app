@@ -70,10 +70,6 @@ export class OcassionsEditComponent implements OnInit{
             offset: occassion.offsetReminder,
             reminder: occassion.reminderOn
           });
-          let xsrf = getCookie("XSRF-TOKEN");
-          if(xsrf){
-            window.sessionStorage.setItem("xsrf", xsrf);
-          }
         }
         )
     } 
@@ -94,8 +90,9 @@ export class OcassionsEditComponent implements OnInit{
     else{
       this.occasionService.addOccassion(new Occassion(form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
     }
-    //form.reset();
+
     this.router.navigate(['occassions']);
+  
   }
   onCancel(){
     this.router.navigate(['occassions']);
