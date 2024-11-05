@@ -21,7 +21,7 @@
             </div> <!-- form-group end.// -->
             <div class="col form-group">    
                 <label>Last name</label>
-                  <input required name="lastname" pattern="^[a-zA-Z ]*$" [(ngModel)]="userData.lastName"  type="text" class="form-control" #lastname="ngModel">
+                  <input required name="lastname"  placeholder="Enter your last name" pattern="^[a-zA-Z ]*$" [(ngModel)]="userData.lastName"  type="text" class="form-control" #lastname="ngModel">
                   <div *ngIf="(lastname.invalid && lastname.touched) || lastname.dirty">
                     <small class="text-danger" *ngIf="lastname.errors?.pattern">Only alphabets allowed</small>
                     <small class="text-danger" *ngIf="lastname.errors?.required">Please enter your last name</small>
@@ -30,7 +30,7 @@
         </div> <!-- form-row end.// -->
         <div class="form-group">
             <label>Email address</label>
-            <input required name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="" type="email" class="form-control" [(ngModel)]="userData.email" #email="ngModel">
+            <input required name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter your email" type="email" class="form-control" [(ngModel)]="userData.email" #email="ngModel">
             <div *ngIf="(email.invalid && email.touched) || email.dirty">
                 <small *ngIf="email.errors?.required" class="text-danger">Primary email is required</small>
                 <small *ngIf="email.errors?.pattern" class="text-danger">Please provide a valid email address</small>
@@ -39,7 +39,7 @@
         </div> <!-- form-group end.// -->
         <div class="form-group">
             <label>Create password</label>
-            <input required name="password" [(ngModel)]="userData.password" class="form-control" type="password" #password="ngModel">
+            <input required name="password" placeholder="Enter a password" [(ngModel)]="userData.password" class="form-control" type="password" #password="ngModel">
             <span class="help-block" style="font-size: small; color: crimson;" *ngIf="!password.valid && password.touched">Please enter a password</span>
         </div> <!-- form-group end.// -->  
         <div class="form-group">

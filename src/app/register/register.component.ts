@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../shared/user.model';
+import { KeycloakService } from "keycloak-angular";
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   error:string = null;
   isLoading = false;
 
-  constructor(private router:Router, private http:HttpClient){
+  constructor(private router:Router, private http:HttpClient, private keyCloak:KeycloakService){
 
   }
 
@@ -39,12 +40,14 @@ export class RegisterComponent implements OnInit {
       
       console.log("No error");
       console.log(responseData);
-      this.router.navigate(['/login']);
+      alert("Registration complete");
+      this.router.navigate(['/welcome']);
       this.isLoading= false;
       form.reset();
     },
     error => {
-      this.error = error.error;
+      console.log(error.error);
+     if( error.error.status = 500)
       console.log(error);
       this.isLoading= false;
     }
@@ -52,6 +55,6 @@ export class RegisterComponent implements OnInit {
   }
 
   login(){
-    this.router.navigate(['/login']);
+    this.keyCloak.login();
   }
 }
