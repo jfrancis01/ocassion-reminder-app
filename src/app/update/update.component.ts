@@ -29,10 +29,6 @@ export class UpdateComponent implements OnInit{
       next: (response) =>  {
         if(!!response){
           this.userData=response;
-          let xsrf = getCookie("XSRF-TOKEN");
-          if(xsrf){
-            window.sessionStorage.setItem("xsrf", xsrf);
-          }
         }
       },
       error: (error) =>{
