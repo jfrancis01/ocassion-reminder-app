@@ -58,7 +58,6 @@ export class OccassionsService{
     editOccassion(occassion: Occassion, index: number){
         occassion.userID = localStorage.getItem("userID");
         occassion.occassionID = index;
-        //this.occassions[index] = occassion;
         this.occassions.push(occassion);
         this.http.put('http://localhost:8009/occassionsreminder/edit', occassion).subscribe(responseData =>{
             console.log(responseData);
