@@ -91,7 +91,7 @@ export class OcassionsEditComponent implements OnInit{
       this.occasionService.addOccassion(new Occassion(form.value.name, form.value.occassiontype, form.value.occassiondate, form.value.reminder, form.value.offset));
     }
 
-    this.router.navigate(['occassions']);
+    //this.router.navigate(['occassions']);
   
   }
   onCancel(){

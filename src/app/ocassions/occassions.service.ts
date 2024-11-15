@@ -11,7 +11,7 @@ export class OccassionsService{
     private occassions: Occassion[] = [];
     private occassion: Occassion;
 
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient, private router:Router){
 
     }  
 
@@ -50,8 +50,9 @@ export class OccassionsService{
         occassion.userID = sessionStorage.getItem("userID");
         this.http.post('http://localhost:8009/occassionsreminder/add', occassion).subscribe(responseData =>{
             console.log(responseData);
+            this.occassionsChanged.next(this.occassions.slice());
+            this.router.navigate(['occassions']);
           });
-        this.occassionsChanged.next(this.occassions);
     }
 
     editOccassion(occassion: Occassion, index: number){
