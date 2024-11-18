@@ -10,6 +10,7 @@ export class OccassionsService{
     occassionsChanged = new Subject<Occassion[]>
     private occassions: Occassion[] = [];
     private occassion: Occassion;
+    E
 
     constructor(private http: HttpClient, private router:Router){
 
@@ -66,7 +67,14 @@ export class OccassionsService{
         });
     }
 
-    deleteOccassion(index: Number){
-
+    deleteOccassion(occassionID: number, index:number){
+        this.occassions.splice(index, 1);
+        const httpOptions = {
+            params:{"occassionID": occassionID}
+          }
+        this.http.get('http://localhost:8009/occassionsreminder/delete', httpOptions).subscribe(responseData =>{
+            console.log("deleted");
+            this.occassionsChanged.next(this.occassions.slice());
+        });
     }
 }

@@ -21,10 +21,10 @@ export class OcassionsListComponent implements OnInit, OnDestroy{
 
   }
 
-  onDelete(index: Number){
-    console.log(index);
-    if(confirm("Are you sure you want to delete the occassion ?" )){
-      this.occasionsService.deleteOccassion(index);
+  onDelete(occID: number, index: number){
+    console.log(occID + " " + index);
+    if(confirm("Are you sure you want to delete the occassion #" + index + "?" )){
+      this.occasionsService.deleteOccassion(occID, index);
     }
   }
 
