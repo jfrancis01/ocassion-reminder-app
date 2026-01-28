@@ -22,13 +22,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8082/',
-        realm: 'OccassionReminder-dev',
-        clientId: 'occassionsreminder-angular-pkce',
+        url: 'http://localhost:8081/',
+        realm: 'occassionsreminder-dev',
+        clientId: 'occasionsreminder-api',
       },
       initOptions: {
         pkceMethod: 'S256',
         redirectUri: 'http://localhost:4200/home',
+        checkLoginIframe: false
       },loadUserProfileAtStartUp: false
     });
 }
