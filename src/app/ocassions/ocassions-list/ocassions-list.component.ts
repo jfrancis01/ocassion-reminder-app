@@ -16,6 +16,7 @@ export class OcassionsListComponent implements OnInit, OnDestroy{
   id:Number;
   userID:String;
   private occassionChangedSub : Subscription;
+  searchString:String;
 
   constructor(private occasionsService: OccassionsService, private router: Router, private route:ActivatedRoute){
 

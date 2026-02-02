@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { UpdateComponent } from './update/update.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -46,7 +47,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     LoadingSpinner,
     HomeComponent,
     UpdateComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

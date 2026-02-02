@@ -11,3 +11,28 @@
 table  { border-collapse: collapse; width: 100%; }
 th, td { padding: 8px 16px; }
 th     { background:#eee; }
+
+.header-container {
+    display: flex; /* Aligns child elements side-by-side */
+    align-items: center; /* Vertically centers the items */
+    justify-content: space-between; /* Distributes space between the h1 and the search form */
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+.search-form {
+    display: flex;
+    align-items: center; /* Centers the icon and input within the form */
+    position: relative; /* Needed to position the icon inside the input area */
+}
+
+.search-form input {
+    padding: 5px 10px 5px 30px; /* Add left padding for the icon */
+}
+
+.search-icon {
+    position: absolute; /* Position the icon absolutely within the form */
+    left: 10px; /* Adjust to desired position */
+    top: 50%;
+    transform: translateY(-50%); /* Ensures perfect vertical centering of the icon */
+}
