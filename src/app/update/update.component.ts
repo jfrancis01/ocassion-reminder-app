@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../shared/user.model';
 import { HttpClient } from '@angular/common/http';
 import { getCookie } from 'typescript-cookie';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-update',
@@ -25,7 +26,7 @@ export class UpdateComponent implements OnInit{
     const httpOptions = {
       params:{"userID": sessionStorage.getItem("userID")}
     }
-    this.http.get<User>('http://localhost:8009/occassionsreminder/getUser', httpOptions).subscribe({
+    this.http.get<User>(environment.UPDATE_COMPONENT_GET_USER_URL, httpOptions).subscribe({
       next: (response) =>  {
         if(!!response){
           this.userData=response;
@@ -41,7 +42,7 @@ export class UpdateComponent implements OnInit{
   onSubmit(form:NgForm){
     console.log(form);
     const user =new User(this.userData.userID, null,form.value.firstname, form.value.lastname, form.value.email,null )
-    this.http.put('http://localhost:8009/occassionsreminder/editUser', user ).subscribe({
+    this.http.put(environment.UPDATE_COMPONENT_EDIT_USER_URL, user ).subscribe({
       next: (response) =>  {
         if(!!response){
           alert("Successfully Updated");

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs-compat";
+import { environment } from "../../environments/environment";
 
 @Injectable({providedIn:'root'})
 export class OccassionsService{
@@ -23,7 +24,7 @@ export class OccassionsService{
         const httpOptions = {
             params:{"userID": sessionStorage.getItem("userID")}
           }
-        this.http.get<Occassion[]>('http://localhost:8009/occassionsreminder/occassions', httpOptions)
+        this.http.get<Occassion[]>(environment.OCCASSIONS_SERVICE_GET_OCCASSIONS_URL, httpOptions)
         .subscribe((occassions)=> this.setOccassions(occassions));
         return this.occassions.slice();
     }
@@ -43,13 +44,13 @@ export class OccassionsService{
         const httpOptions = {
             params:{"occassionID": index}
           }
-          return this.http.get<Occassion>('http://localhost:8009/occassionsreminder/occassion', httpOptions)
+          return this.http.get<Occassion>(environment.OCCASSIONS_SERVICE_GET_ONE_OCCASSION_URL, httpOptions)
     }
 
     addOccassion(occassion: Occassion){
         this.occassions.push(occassion);
         occassion.userID = sessionStorage.getItem("userID");
-        this.http.post('http://localhost:8009/occassionsreminder/add', occassion).subscribe(responseData =>{
+        this.http.post(environment.OCCASSIONS_SERVICE_ADD_OCCASSION_URL, occassion).subscribe(responseData =>{
             console.log(responseData);
             this.occassionsChanged.next(this.occassions.slice());
             this.router.navigate(['occassions']);
@@ -60,7 +61,7 @@ export class OccassionsService{
         occassion.userID = localStorage.getItem("userID");
         occassion.occassionID = index;
         this.occassions.push(occassion);
-        this.http.put('http://localhost:8009/occassionsreminder/edit', occassion).subscribe(responseData =>{
+        this.http.put(environment.OCCASSIONS_SERVICE_EDIT_OCCASSION_URL, occassion).subscribe(responseData =>{
             console.log(responseData);
             this.occassionsChanged.next(this.occassions.slice());
             this.router.navigate(['occassions']);
@@ -72,7 +73,7 @@ export class OccassionsService{
         const httpOptions = {
             params:{"occassionID": occassionID}
           }
-        this.http.get('http://localhost:8009/occassionsreminder/delete', httpOptions).subscribe(responseData =>{
+        this.http.get(environment.OCCASSIONS_SERVICE_DELETE_OCCASSION_URL, httpOptions).subscribe(responseData =>{
             console.log("deleted");
             this.occassionsChanged.next(this.occassions.slice());
         });

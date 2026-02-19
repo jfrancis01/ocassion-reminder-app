@@ -5,6 +5,7 @@ import { LoggedInUser } from "./LoggedInUser.model";
 import { catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { getCookie, removeCookie } from 'typescript-cookie';
+import { environment } from "../../environments/environment";
 
 export interface AuthResponseData{
     userID: string;
@@ -17,7 +18,8 @@ export interface AuthResponseData{
 @Injectable()
 export class AuthService{
 
-    LOGIN_URL = "http://localhost:8009/occassionsreminder/login";
+    //LOGIN_URL = "http://localhost:8009/occassionsreminder/login";
+    LOGIN_URL = environment.AUTHSERVICE_LOGIN_URL;
     loggedInUser = new BehaviorSubject<LoggedInUser>(null);
     constructor(private http:HttpClient, private router:Router){
 

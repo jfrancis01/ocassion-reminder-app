@@ -1,7 +1,7 @@
 export const environment = {
     production:true,
-    KEYCLOAK_INIT_URL: 'http://keycloak:8080/',
-    KEYCLOAK_REDIRECT_URI: 'http://localhost:4200/home',
+    APPMODULE_KEYCLOAK_INIT_URL: 'http://keycloak:8080/',
+    APPMODULE_KEYCLOAK_REDIRECT_URI: 'http://localhost:4200/home',
     AUTHSERVICE_LOGIN_URL:'http://localhost:8009/occassionsreminder/login',
     HEADER_COMPONENT_REDIRECT_URI: 'http://localhost:4200/welcome',
     OCCASSIONS_SERVICE_GET_OCCASSIONS_URL: 'http://localhost:8009/occassionsreminder/occassions',

@@ -18,18 +18,21 @@ import { UpdateComponent } from './update/update.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { environment } from '../environments/environment';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8081/',
+        //url: 'http://localhost:8081/',
+        url: environment.APPMODULE_KEYCLOAK_INIT_URL,
         realm: 'occassionsreminder-dev',
         clientId: 'occasionsreminder-api',
       },
       initOptions: {
         pkceMethod: 'S256',
-        redirectUri: 'http://localhost:4200/home',
+        redirectUri: environment.APPMODULE_KEYCLOAK_REDIRECT_URI,
+        //redirectUri: 'http://localhost:4200/home',
         checkLoginIframe: false
       },loadUserProfileAtStartUp: false
     });

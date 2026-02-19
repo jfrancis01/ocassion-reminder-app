@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../shared/user.model';
 import { KeycloakService } from "keycloak-angular";
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -34,7 +35,7 @@ export class RegisterComponent implements OnInit {
     
     this.isLoading=true;
     
-    this.http.post('http://localhost:8009/occassionsreminder/register', this.userData, {
+    this.http.post(environment.REGISTER_COMPONENT_REGISTER_URL, this.userData, {
       responseType: 'json'
     }).subscribe(responseData =>{
       

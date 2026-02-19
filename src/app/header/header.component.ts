@@ -6,6 +6,7 @@ import { KeycloakService } from "keycloak-angular";
 import { LoggedInUser } from "../auth/LoggedInUser.model";
 import { KeycloakProfile } from "keycloak-js";
 import { getCookie, removeCookie } from 'typescript-cookie';
+import { environment } from "../../environments/environment";
 
 @Component({
     selector: 'app-header',
@@ -55,7 +56,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
     onLogOut(){
         sessionStorage.clear();
         removeCookie("XSRF-TOKEN");
-        let redirectUri: string = "http://localhost:4200/welcome";
+        let redirectUri: string = environment.HEADER_COMPONENT_REDIRECT_URI;
+        //let redirectUri: string = "http://localhost:4200/welcome";
         this.keyCloak.logout(redirectUri);
     }
 }
