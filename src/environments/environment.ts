@@ -1,6 +1,6 @@
 export const environment = {
     production:true,
-    APPMODULE_KEYCLOAK_INIT_URL: 'http://localhost:8082/',
+    APPMODULE_KEYCLOAK_INIT_URL: 'http://localhost:8082/auth',
     APPMODULE_KEYCLOAK_REDIRECT_URI: 'http://localhost:4200/home',
     AUTHSERVICE_LOGIN_URL:'http://localhost:9000/occassionsreminder/login',
     HEADER_COMPONENT_REDIRECT_URI: 'http://localhost:4200/welcome',
